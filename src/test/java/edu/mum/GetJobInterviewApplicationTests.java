@@ -1,4 +1,4 @@
-package edu.mum.GetJobInterview;
+package edu.mum;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,21 +17,17 @@ import edu.mum.company.entity.Category;
 import edu.mum.company.entity.Company;
 import edu.mum.company.repository.CompanyRepository;
 
-//@RunWith(SpringRunner.class)
-//@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-//@DataJpaTest
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class GetJobInterviewApplicationTests {
 
-//	@Autowired
-//	ApplicationContext context;
+	@Autowired
+	ApplicationContext context;
 	
-	//@Autowired
-	//CompanyRepository compRepo;
-	//CandidateRepository can;
 	
 	@Test
 	public void saveCompany() {
-		//CompanyRepository compRepo = context.getBean(CompanyRepository.class);
+		CompanyRepository compRepo = context.getBean(CompanyRepository.class);
 		
 		// Create Category
 		Category cat = new Category();
@@ -54,8 +50,8 @@ public class GetJobInterviewApplicationTests {
 		comp.setAddress(address);
 		comp.addCategory(cat);
 		
-		//Save company
-		//compRepo.save(comp);
+//		Save company
+		compRepo.save(comp);
 		
 	}
 
