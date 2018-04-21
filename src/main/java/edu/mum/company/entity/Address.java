@@ -2,6 +2,11 @@ package edu.mum.company.entity;
 
 import javax.persistence.Embeddable;
 
+/**
+ * @author: ChauKy
+ * @Date: Apr 20, 2018
+ */
+
 @Embeddable
 public class Address {
 	private String street;
