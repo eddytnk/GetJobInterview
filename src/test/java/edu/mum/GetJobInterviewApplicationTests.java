@@ -11,28 +11,29 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import edu.mum.candidate.repository.CandidateRepository;
 import edu.mum.company.entity.Address;
 import edu.mum.company.entity.Category;
 import edu.mum.company.entity.Company;
+import edu.mum.company.repository.CategoryRepository;
 import edu.mum.company.repository.CompanyRepository;
 
-//@RunWith(SpringRunner.class)
-//@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class GetJobInterviewApplicationTests {
 
 	@Autowired
 	ApplicationContext context;
 	
 	
-//	@Test
+	@Test
 	public void saveCompany() {
 		CompanyRepository compRepo = context.getBean(CompanyRepository.class);
+		CategoryRepository category = context.getBean(CategoryRepository.class);
 		
 		// Create Category
 		Category cat = new Category();
-		cat.setId(1L);
-		cat.setName("ChauKy");
+		cat.setName("Intership");
+		
 		
 		//Create addresss
 		Address address = new Address();
@@ -43,7 +44,6 @@ public class GetJobInterviewApplicationTests {
 		
 		//Create Compnay
 		Company comp = new Company();
-		comp.setId(2L);
 		comp.setName("Test Company");
 		comp.setEmailAddress("abc@yahoo.com");
 		comp.setWebsite("www.test.com");
@@ -51,6 +51,7 @@ public class GetJobInterviewApplicationTests {
 		comp.addCategory(cat);
 		
 //		Save company
+		category.save(cat);
 		compRepo.save(comp);
 		
 	}
