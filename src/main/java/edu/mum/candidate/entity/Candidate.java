@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Table(name="tb_candidate")
 public class Candidate {
 	@Id @GeneratedValue
-	private int id;
+	private Long id;
 	
 	private String name;	
 	private String pictureLocalURL;
@@ -32,12 +32,11 @@ public class Candidate {
 	@OneToMany(mappedBy="owner")
 	private List<Accomplishment> accomplishments= new ArrayList<Accomplishment>();
 		
-
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

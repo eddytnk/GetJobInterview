@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Table(name="tb_interest")
 public class Interest {
 	@Id @GeneratedValue
-	private int id;
+	private Long id;
 	
 	@ManyToOne
 	@JoinColumn(name="candidate_id")
@@ -13,11 +13,12 @@ public class Interest {
 	
 	private String interestName; // wanna use InterestCategory enitity? and then this entity will have Many to One to Candidate and that InterestCategory ? 
 
-	public int getId() {
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

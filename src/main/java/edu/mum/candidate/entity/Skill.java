@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name="tb_skill")
 public class Skill {
 	@Id @GeneratedValue
-	private int id;
+	private Long id;
 	
 	@ManyToOne
 	@JoinColumn(name="candidate_id")
@@ -14,11 +14,11 @@ public class Skill {
 	
 	private String skillName; // wanna use SkillCategory enitity? and then this entity will have Many to One to Candidate and that SkillCategory ? 
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

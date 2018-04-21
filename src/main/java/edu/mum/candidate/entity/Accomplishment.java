@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Table(name="tb_accomplishment")
 public class Accomplishment {
 	@Id @GeneratedValue
-	private int id;
+	private Long id;
 	
 	@ManyToOne
 	@JoinColumn(name="candidate_id")
@@ -13,11 +13,11 @@ public class Accomplishment {
 	
 	private String accomplishmentDescription; // wanna separate to Accomplishment types?  
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

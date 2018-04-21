@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Table(name="tb_education")
 public class Education {
 	@Id @GeneratedValue
-	private int id;
+	private Long id;
 	
 	@ManyToOne
 	@JoinColumn(name="candidate_id")
@@ -22,10 +22,10 @@ public class Education {
 	private int yearTo;
 	
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public Candidate getOwner() {
