@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import edu.mum.candidate.entity.Candidate;
 import edu.mum.company.entity.Company;
 import edu.mum.getInterview.entity.CandidateCompany;
-import edu.mum.getInterview.repository.CandidateCompanyDoa;
+import edu.mum.getInterview.repository.CandidateCompanyDAO;
 import edu.mum.getInterview.repository.CandidateCompanyRepository;
 
 @Service
@@ -18,14 +18,14 @@ public class CandidateCompanyService {
 	private CandidateCompanyRepository candCompRepository;
 
 	@Autowired
-	private CandidateCompanyDoa candCompDao;
+	private CandidateCompanyDAO candCompDAO;
 
 	public List<CandidateCompany> findByCandidate(Candidate candidate) {
-		return candCompDao.findByCandidate(candidate);
+		return candCompDAO.findByCandidate(candidate);
 	}
 
 	public List<CandidateCompany> findByCandidate(Company company) {
-		return candCompDao.findByCompany(company);
+		return candCompDAO.findByCompany(company);
 	}
 
 	public void saveCandidateCompany(CandidateCompany candCompany) {

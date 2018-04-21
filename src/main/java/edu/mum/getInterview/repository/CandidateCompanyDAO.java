@@ -16,7 +16,7 @@ import edu.mum.getInterview.entity.CandidateCompany;
 
 @Repository
 @Transactional
-public class CandidateCompanyDoa {
+public class CandidateCompanyDAO {
 
 	@PersistenceContext
 	private EntityManager em;
