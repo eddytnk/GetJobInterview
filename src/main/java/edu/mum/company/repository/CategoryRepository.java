@@ -7,5 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import edu.mum.company.entity.Category;
 
 public interface CategoryRepository extends CrudRepository<Category, Long> {
+	
+	List<Category> findByName(String name);
 
 }

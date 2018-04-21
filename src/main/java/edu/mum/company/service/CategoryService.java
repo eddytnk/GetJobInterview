@@ -18,6 +18,14 @@ public class CategoryService {
 		return (List<Category>) categoryRepository.findAll();
 	}
 	
+	public List<Category> findByName(String name){
+		return categoryRepository.findByName(name);
+	}
+	
+	public void Delete(Category cat) {
+		categoryRepository.delete(cat);
+	}
+	
 	public void Save(Category cat) {
 		categoryRepository.save(cat);
 	}
