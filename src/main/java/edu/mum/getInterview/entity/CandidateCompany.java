@@ -22,7 +22,7 @@ public class CandidateCompany {
 	@ManyToOne
 	private Candidate candidate;
 	
-	@OneToMany
+	@ManyToOne
 	private Company company;
 
 	public Long getId() {
