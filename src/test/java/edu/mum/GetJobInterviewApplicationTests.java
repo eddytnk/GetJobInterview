@@ -17,15 +17,15 @@ import edu.mum.company.entity.Category;
 import edu.mum.company.entity.Company;
 import edu.mum.company.repository.CompanyRepository;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+//@RunWith(SpringRunner.class)
+//@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class GetJobInterviewApplicationTests {
 
 	@Autowired
 	ApplicationContext context;
 	
 	
-	@Test
+//	@Test
 	public void saveCompany() {
 		CompanyRepository compRepo = context.getBean(CompanyRepository.class);
 		
