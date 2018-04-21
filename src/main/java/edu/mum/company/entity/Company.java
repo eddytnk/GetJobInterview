@@ -9,7 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Company {
@@ -20,8 +21,8 @@ public class Company {
 	private String emailAddress;
 	private String website;
 	
-	@OneToMany
-	@JoinColumn(name="company_id")
+	@ManyToMany
+	@JoinTable(name="Company_Category", joinColumns= @JoinColumn(name="Company_ID"), inverseJoinColumns= @JoinColumn(name="Category_ID"))
 	private List<Category> categories = new ArrayList<Category>();
 	
 	@Embedded
@@ -77,6 +78,7 @@ public class Company {
 	
 	
 	public void addCategory(Category cat) {
+		cat.setCompany(this);
 		categories.add(cat);
 	}
 
@@ -89,4 +91,12 @@ public class Company {
 		this.address = address;
 	}
 
+
+	@Override
+	public String toString() {
+		return "Company [Id=" + Id + ", name=" + name + ", emailAddress=" + emailAddress + ", website=" + website
+				+ ", categories=" + categories + ", address=" + address + "]";
+	}
+
+	
 }
