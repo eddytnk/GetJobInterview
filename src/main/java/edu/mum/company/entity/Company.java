@@ -12,6 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+/**
+ * @author: ChauKy
+ * @Date: Apr 21, 2018
+ */
+
 @Entity
 public class Company {
 	@Id
@@ -27,6 +32,11 @@ public class Company {
 	
 	@Embedded
 	private Address address;
+
+	
+	public Company() {
+	}
+
 
 	public Long getId() {
 		return Id;
@@ -78,7 +88,6 @@ public class Company {
 	
 	
 	public void addCategory(Category cat) {
-		cat.setCompany(this);
 		categories.add(cat);
 	}
 

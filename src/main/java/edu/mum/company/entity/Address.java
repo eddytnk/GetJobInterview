@@ -14,6 +14,10 @@ public class Address {
 	private String country;
 	private int zipcode;
 	
+	
+	public Address() {
+	}
+
 	public String getStreet() {
 		return street;
 	}

@@ -1,10 +1,17 @@
 package edu.mum.company.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+
+/**
+ * @author: ChauKy
+ * @Date: Apr 21, 2018
+ */
 
 @Entity
 public class Category {
@@ -14,8 +21,13 @@ public class Category {
 	private String name;
 	
 	@ManyToMany(mappedBy="categories")
-	private Company company;
+	private List<Company> companies;
 	
+
+
+	public Category() {
+	}
+
 	public Long getId() {
 		return Id;
 	}
@@ -32,12 +44,18 @@ public class Category {
 		this.name = name;
 	}
 
-	public Company getCompany() {
-		return company;
+	
+	public List<Company> getCompanies() {
+		return companies;
 	}
 
-	public void setCompany(Company company) {
-		this.company = company;
+	public void setCompanies(List<Company> companies) {
+		this.companies = companies;
+	}
+	
+	public void addCompanies(Company company) {
+		companies.add(company);
+		company.addCategory(this);
 	}
 
 	@Override
