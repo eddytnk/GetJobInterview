@@ -1,4 +1,4 @@
-package edu.mum.candidate.domain;
+package edu.mum.candidate.entity;
 
 import javax.persistence.*;
 
