@@ -1,4 +1,4 @@
-package edu.mum.candidate.domain;
+package edu.mum.candidate.entity;
 
 import java.util.*;
 import javax.persistence.*;
@@ -9,10 +9,8 @@ public class Candidate {
 	@Id @GeneratedValue
 	private int id;
 	
-	private String name;
-	
-	@Lob
-	private byte[]picture;
+	private String name;	
+	private String pictureLocalURL;
 	
 	@Embedded
 	Address address;
@@ -20,19 +18,20 @@ public class Candidate {
 	private String summary;
 	
 	@OneToMany(mappedBy="owner")
-	private List<Experience> experiences;
+	private List<Experience> experiences = new ArrayList<Experience>();;
 	
 	@OneToMany(mappedBy="owner")
-	private List<Education> educations;
+	private List<Education> educations= new ArrayList<Education>();
 
 	@OneToMany(mappedBy="owner")
-	private List<Skill> skills;
+	private List<Skill> skills = new ArrayList<Skill>();
 	
 	@OneToMany(mappedBy="owner")
-	private List<Interest> interests;
+	private List<Interest> interests= new ArrayList<Interest>();
 	
 	@OneToMany(mappedBy="owner")
-	private List<Accomplishment> accomplishments;
+	private List<Accomplishment> accomplishments= new ArrayList<Accomplishment>();
+		
 
 	public int getId() {
 		return id;
@@ -48,14 +47,14 @@ public class Candidate {
 
 	public void setName(String name) {
 		this.name = name;
+	}	
+
+	public String getPictureLocalURL() {
+		return pictureLocalURL;
 	}
 
-	public byte[] getPicture() {
-		return picture;
-	}
-
-	public void setPicture(byte[] picture) {
-		this.picture = picture;
+	public void setPictureLocalURL(String pictureLocalURL) {
+		this.pictureLocalURL = pictureLocalURL;
 	}
 
 	public Address getAddress() {
