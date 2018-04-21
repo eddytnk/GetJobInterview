@@ -1,4 +1,4 @@
-package edu.mum;
+package edu.mum.GetJobInterview;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
