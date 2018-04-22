@@ -1,6 +1,7 @@
 package edu.mum.company.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,10 @@ public class CompanyService {
 	
 	@Autowired
 	CompanyRepository companyRepository;
+	
+	public Company findCompanyById(String companyId) {
+		return companyRepository.findByCompanyId(companyId);
+	}
 	
 	public List<Company> findByName(String name){
 		return companyRepository.findByName(name);

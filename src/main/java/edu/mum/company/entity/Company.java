@@ -3,7 +3,6 @@ package edu.mum.company.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,6 +22,7 @@ public class Company {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long Id;
+	private String companyId;
 	private String name;
 	private String emailAddress;
 	private String website;
@@ -47,6 +47,18 @@ public class Company {
 	public void setId(Long id) {
 		Id = id;
 	}
+
+	
+	
+	public String getCompanyId() {
+		return companyId;
+	}
+
+
+	public void setCompanyId(String companyID) {
+		this.companyId = companyID;
+	}
+
 
 	public String getName() {
 		return name;

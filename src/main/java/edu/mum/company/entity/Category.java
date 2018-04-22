@@ -1,5 +1,6 @@
 package edu.mum.company.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -21,7 +22,7 @@ public class Category {
 	private String name;
 	
 	@ManyToMany(mappedBy="categories")
-	private List<Company> companies;
+	private List<Company> companies =  new ArrayList<Company>();
 	
 
 
