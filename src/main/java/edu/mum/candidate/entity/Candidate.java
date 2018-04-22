@@ -18,7 +18,9 @@ public class Candidate {
 	@Embedded
 	Address address;
 	
+	private String title;
 	private String summary;
+	
 	
 	@OneToMany(mappedBy="owner" , cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Experience> experiences = new ArrayList<Experience>();
