@@ -1,4 +1,4 @@
-<%@ include file="../header.jspf"%>
+<%@ include file="./header.jspf"%>
 
 <div class="container">
 
@@ -9,4 +9,4 @@
  
 </div>
 
-<%@ include file="../footer.jspf"%>
+<%@ include file="./footer.jspf"%>

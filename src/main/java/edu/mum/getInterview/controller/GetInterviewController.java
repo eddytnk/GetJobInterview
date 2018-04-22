@@ -11,8 +11,8 @@ public class GetInterviewController {
 	
 @RequestMapping(value = { "/getinterview" }, method = RequestMethod.GET)
 public String getInterviewPage() {
-	System.out.println("===============================Hello================================");
-	return "abc";
+	System.out.println("============================Getinterview=============================");
+	return "sample_template";
 }
 
 }
