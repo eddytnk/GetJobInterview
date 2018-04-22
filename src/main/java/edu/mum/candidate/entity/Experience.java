@@ -3,6 +3,8 @@ package edu.mum.candidate.entity;
 import java.util.*;
 import javax.persistence.*;
 
+import edu.mum.common.Address;
+
 @Entity
 @Table(name="tb_experience")
 public class Experience {
