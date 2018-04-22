@@ -10,6 +10,8 @@ import edu.mum.company.entity.Company;
 @Repository
 public interface CompanyRepository extends CrudRepository<Company, Long> {
 
+	Company findById();
+	Company findByCompanyId(String companyId);
 	List<Company> findByName(String name);
 
 }
