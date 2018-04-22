@@ -5,6 +5,8 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,10 +16,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import edu.mum.candidate.entity.Candidate;
 import edu.mum.candidate.service.CandidateService;
+import edu.mum.company.entity.Company;
 
 
 @Controller
-@RequestMapping(value="/candidate")
+//@RequestMapping(value="/candidate")
 public class CandidateController {
 	private CandidateService candidateService;
 	
@@ -26,33 +29,28 @@ public class CandidateController {
 		this.candidateService = candidateService;
 	}
 	
-	@RequestMapping(value = "/candidate", method = RequestMethod.POST)
-	@ResponseStatus(HttpStatus.CREATED)
-	public void addCandidate( Candidate candidate) {
-		candidateService.addCandidate(candidate);
-	}
-	
-	@RequestMapping(value = "/candidate/{candidateId}", method = RequestMethod.DELETE)
-	@ResponseStatus(HttpStatus.OK)
-	public void deleteCandidate(@PathVariable("candidateId") String candidateId) { 
-		candidateService.deleteCandidate(candidateId);
-	}
-	
-	@RequestMapping(value = "/candidate/{candidateId}", method = RequestMethod.GET)
-	public @ResponseBody Candidate getCustomer(@PathVariable("candidateId") String candidateId) { 
-		return candidateService.getById(candidateId);
-	}
-	
 	@RequestMapping(value = "/candidates", method = RequestMethod.GET)
-	public @ResponseBody Collection<Candidate> getCandidates() {
-		return candidateService.getCandidates();
+	public String getCandidates(Model model) {
+		model.addAttribute("candidates", candidateService.getCandidates());
+		return "candidate/candidates";
 	}
 	
-	@RequestMapping(value = "/candidate/{candidateId}", method = RequestMethod.PUT)
-	@ResponseStatus(HttpStatus.OK)
-	public void updateCustomer(@RequestBody Candidate candidate) {
-		candidateService.updateCandidate(candidate);
-		//return customerService.getCustomer(customer.getCustomerNumber());
+	@RequestMapping(value = "/candidates/{id}", method = RequestMethod.GET)
+	public String getCustomer(@PathVariable("id") String id, Model model) { 
+		model.addAttribute("candidate", candidateService.getById(id));
+		return "candidate/candidateDetail";
+	}
+	
+	@RequestMapping(value = "/addCandidate")
+	public String addCandidate(Model model, @ModelAttribute("candidate")Candidate candidate) {
+		return "candidate/addCandidate";
+	}
+	
+	@RequestMapping(value="/addCandidate",method=RequestMethod.POST)
+	public String saveCandidate(Model model,@ModelAttribute("candidate") Candidate candidate)
+	{
+		candidateService.addCandidate(candidate);
+		return "redirect:/candidate/candidates";
 	}
 	
 }
