@@ -3,33 +3,31 @@
 <div class="container">
 <h1>Add Candidate</h1>
  
- 	<form>
- 		<fieldset> 
+ 	
+ 		<fieldset>
  			<legend> Basic Info</legend>
- 			<table>
- 				<tr>
- 					<td>Name:</td>
- 					<td><input type="text" name="name"/></td>
- 				</tr>
- 				<tr>
- 					<td>Email Address:</td>
- 					<td><input type="text" name="emailAddress"/></td>
- 				</tr>
- 				<tr>
- 					<td>Title:</td>
- 					<td><input type="text" name="title"/></td>
- 				</tr>
- 				<tr>
- 					<td>Summary:</td>
- 					<td><input type="text" name="summary"/></td>
- 				</tr>
- 			</table>
- 			<!-- <div>Name: <input type="text" name="name"/></div>
- 			<div>Email Address: <input type="text" name="emailAddress"/></div>
- 			<div>Title: <input type="text" name="title"/></div>
- 			<div>Summary: <input type="text" name="summary"/></div> -->
- 			
+ 			<form modelAttribute="candidate" action="addCandidate" method="post">
+	 			<div class="form-group">
+		 			<label>Name:</label> 
+		 			<input type="text" class="form-control" name="name" id="name" placeholder="Enter official name"  >
+	 			</div>
+	 			<div class="form-group">
+		 			<label>E-mail:</label> 
+		 			<input type="text" class="form-control" name="emailAddress"  id="emailAddress" placeholder="Enter official e-mail address" >
+	 			</div>
+	 			<div class="form-group">
+		 			<label>Title:</label> 
+		 			<input type="text" class="form-control"  name="title" id="title" placeholder="Enter current job title" >
+	 			</div>
+	 			<div class="form-group">
+		 			<label for="summary">Summary:</label> 
+		 			<!-- <input type="text" class="form-control"  name="summary" id="summary" placeholder="Enter your summary" > -->
+		 			<textarea class="form-control" rows="5" name="summary" id="summary" placeholder="Enter work experience summary"></textarea>
+	 			</div>
+	 			<div><button  type="submit" class="btn btn-primary">Save</button></div>
+ 			</form>
  		</fieldset>
+ 		 		
  		<fieldset> 
  			<legend>Work Experiences</legend>
  			<button>Add Work Experience</button>
@@ -56,9 +54,9 @@
  			
  		</fieldset>
  		
- 		<div><input type="submit" /></div>
+ 		
  
-	</form>
+	
  
 </div>
 
