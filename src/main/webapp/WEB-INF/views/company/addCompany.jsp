@@ -9,25 +9,25 @@
 </head>
 <body>
 	<form:form modelAttribute="company" action="companies" method="post">
-	<table>
+		<table>
 			<tr>
-			<td>Company ID:</td>
-			<td><input type="text" name="companyId" /> </td>
-		</tr>
-		<tr>
-			<td>Name:</td>
-			<td><input type="text" name="name" /> </td>
-		</tr>
-		<tr>
-			<td>Email Address:</td>
-			<td><input type="text" name="emailAddress" /> </td>
-		</tr>
-		<tr>
-			<td>Website:</td>
-			<td><input type="text" name="website" /> </td>
-		</tr>
-	</table>
-	<input type="submit"/>
+				<td>Name:</td>
+				<td><input type="text" name="name" /></td>
+			</tr>
+			<tr>
+				<td>Email Address:</td>
+				<td><input type="text" name="emailAddress" /></td>
+			</tr>
+			<tr>
+				<td>Website:</td>
+				<td><input type="text" name="website" /></td>
+			</tr>
+			<tr>
+				<td>Zipcode:</td>
+				<td><input type="text" name="address.zipcode" /></td>
+			</tr>
+		</table>
+		<input type="submit" />
 
 	</form:form>
 </body>

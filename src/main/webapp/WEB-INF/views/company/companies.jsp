@@ -12,11 +12,10 @@
 	<table border=1>
 		<c:forEach var="company" items="${companies}">
 			<tr>
-				<td>${company.companyId}</td>
 				<td>${company.name}</td>
 				<td>${company.emailAddress}</td>
 				<td>${company.website}</td>
-				<td><a href="companies/${company.companyId}">edit</a></td>
+				<td><a href="companies/${company.getId()}">edit</a></td>
 			</tr>
 		</c:forEach>
 	</table>
