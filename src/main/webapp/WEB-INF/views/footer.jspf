@@ -1,9 +1,9 @@
 
-
-<!-- <nav class="navbar fixed-bottom navbar-light bg-light">
+<br/><br/><br/>
+<nav class="navbar fixed-bottom navbar-light bg-light">
 <hr/>
 <div style="text-align: center;font-size: small;">Powered by CS544 Company Ltd</div>
-</nav> -->
+</nav>
 
 <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 <!-- Optional JavaScript -->

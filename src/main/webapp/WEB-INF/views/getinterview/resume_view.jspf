@@ -1,0 +1,154 @@
+
+<div class="card" style="width: 100%">
+		<img class="card-img-top" src="../../resources/images/cover.jpg"
+			alt="Cover Image">
+		<div class="card-body">
+			<div style="text-align: right;">
+			</div>
+			<div style="text-align: center;">
+				<img class="img-thumbnail" src="./resources/images/avater.png"
+					style="width: 200px; height: 200px; border-radius: 100%; margin-top: -150px"
+					alt="Avater Image">
+			</div>
+			<div style="text-align: center; padding: 2%">
+				<h5 class="card-title">${candidate.name }</h5>
+				<p class="card-text">Software Engineer @MUM</p>
+			</div>
+			<hr />
+			<div>
+				 ${candidate.summary }
+			</div>
+		</div>
+	</div>
+	
+	
+	<br />
+	
+			<div class="card" id="experience">
+				<div class="card-header">
+					<spring:message code="label.experience" text="experience" />
+				</div>
+				<div class="card-body">
+				<c:forEach items="${candidate.experiences}" var="experience">
+					<div class="row">
+						<div class="col-md-1">
+							<i class="fa fa-database" style="font-size: 50px"></i>
+						</div>
+						<div class="col-md-11">
+
+							<h5 class="card-title">${experience.position}</h5>
+							<div>
+								<b>${experience.companyName}</b>
+							</div>
+							<div>
+								${experience.periodFrom} - ${experience.periodFrom}
+							</div>
+							<div>
+								${experience.street} 
+								${experience.city} 
+								${experience.state}, 
+								${experience.state}.
+								(ZIP: ${experience.zip})
+							</div>
+							<p class="card-text">
+								${experience.description}
+							</p>
+						
+							<hr />
+
+						</div>
+					</div>
+				</c:forEach>
+				</div>
+			</div>
+
+			<br />
+			<div class="card">
+				<div class="card-header" id="education">
+					<spring:message code="label.education" text="education" />
+				</div>
+				<div class="card-body">
+						<c:forEach items="${candidate.educations}" var="education">
+						<div class="row">
+							<div class="col-md-1">
+								<i class="fa fa-institution" style="font-size: 50px"></i>
+							</div>
+							<div class="col-md-11">
+
+								<h5 class="card-title">${education.schoolName}</h5>
+								<div>
+									<b>${education.degree} 
+									<spring:message code="label.of" text="of" /> 
+									${education.fieldStudy}
+									</b>
+								</div>
+								<div> ${education.yearFrom} -  ${education.yearTo}</div>
+							
+								<p class="card-text">
+									 ${education.description}
+								</p>
+								<hr />
+
+							</div>
+						</div>
+						</c:forEach>
+				</div>
+			</div>
+
+			<br />
+			<div class="card">
+				<div class="card-header" id="futured_skills">
+					<spring:message code="label.futured_skills" text="futured_skills" />
+				</div>
+				<div class="card-body">
+					<c:forEach items="${candidate.skills}" var="skill">
+						<button class="btn btn-secondary">
+							<i class="fa fa-plus" style="font-size: 50px"></i>
+							
+						    ${skill.skillName}
+						</button>
+					</c:forEach>
+
+				</div>
+			</div>
+			<br />
+			
+			<div class="card">
+				<div class="card-header" id="interests">
+					<spring:message code="label.interest" text="interest" />
+				</div>
+				<div class="card-body">
+					<c:forEach items="${candidate.interests}" var="interest">
+						<button class="btn btn-secondary">
+							<i class="fa fa-plus" style="font-size: 50px"></i>
+							
+						    ${interest.interestName}
+						</button>
+					</c:forEach>
+
+				</div>
+			</div>
+			<br />
+			
+			<div class="card">
+				<div class="card-header" id="accomplishments">
+					<spring:message code="label.accomplishments" text="accomplishments" />
+				</div>
+				<div class="card-body">
+				
+					<c:forEach items="${candidate.accomplishments}" var="accomplishment">
+							<div class="row">
+								<div class="col-md-1">
+									<i class="fa fa-lightbulb-o" style="font-size: 50px"></i>
+								</div>
+								<div class="col-md-11">
+									<div> ${accomplishments.accomplishmentDescription}</div>
+									<hr />
+								</div>
+							</div>
+					</c:forEach>
+
+				</div>
+			</div>
+			<br />
+			
