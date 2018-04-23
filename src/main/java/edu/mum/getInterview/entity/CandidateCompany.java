@@ -1,10 +1,14 @@
 package edu.mum.getInterview.entity;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import edu.mum.candidate.entity.Candidate;
 import edu.mum.company.entity.Company;
@@ -23,6 +27,11 @@ public class CandidateCompany {
 	
 	@ManyToOne
 	private Company company;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createdAt;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date updatedAt;
 
 	public Long getId() {
 		return id;
@@ -62,6 +71,22 @@ public class CandidateCompany {
 
 	public void setCompany(Company company) {
 		this.company = company;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 	
 	

@@ -32,6 +32,18 @@ public class CandidateCompanyDAO {
 		query.setParameter(1, candidate);
 		return query.getResultList();
 	}
+	
+	public Long findCondidateCompanyCount(Candidate candidate, Company company) {
+
+		TypedQuery<Long> query = 
+				em.createQuery("select count(cc.id) from CandidateCompany cc where cc.candidate = ? AND "
+						+ "cc.company = ?",
+				Long.class);
+
+		query.setParameter(1, candidate);
+		query.setParameter(2, company);
+		return query.getSingleResult();
+	}
 
 	public List<CandidateCompany> findByCompany(Company company) {
 

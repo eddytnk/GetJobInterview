@@ -1,6 +1,8 @@
 package edu.mum.getInterview.controller;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -46,20 +48,22 @@ public String getInterviewPage(Model model) {
 @RequestMapping(value = { "/getinterview" }, method = RequestMethod.POST)
 public String saveInterviewPage(Model model, @RequestParam( required = false ) List<Long> company) {
 	
-	/*if(company !=null) {
+	if(company !=null) {
 		
-		Candidate candidate = candService.findCandidateById(new Long(10)); //From session	
+		Candidate candidate = candService.findByName("Edward T. Tanko").get(0); //From session	
 		
 		List<CandidateCompany> candComs = company.stream()
 				.distinct()
 				.map(comId->{
-					Company com = (Company)companyService.findCompanyById(comId).get();
+					Company com = companyService.findById(comId);
 					CandidateCompany candCom = new CandidateCompany();
 					candCom.setCandidate(candidate);
 					candCom.setCompany(com);
 					String resumeLink = "link";
 					candCom.setResumeLink(resumeLink);
 					candCom.setVisited(false); 
+					candCom.setCreatedAt(new Date());
+					candCom.setUpdatedAt(new Date());
 					return candCom;
 				}).collect(Collectors.toList());
 			
@@ -67,7 +71,7 @@ public String saveInterviewPage(Model model, @RequestParam( required = false ) L
 					canComService.saveCandidateCompany(c); 
 				}
 	}
-	*/
+	
 	List<Category> categories = categoryService.getAllCategories();
 	model.addAttribute("categories",categories);
 	return "getinterview/getinterview";
@@ -75,11 +79,23 @@ public String saveInterviewPage(Model model, @RequestParam( required = false ) L
 
 @RequestMapping(value = { "/resume" }, method = RequestMethod.GET)
 public String getResume(Model model) {
-	//Candidate candidate = candService.findCandidateById(new Long(10)); //From session	
-	//model.addAttribute("candidate", candidate);
+	Candidate candidate = candService.findByName("Edward T. Tanko").get(0); //From session		
+	model.addAttribute("candidate", candidate);
 	return "getinterview/resume";
 }
 
+
+@RequestMapping(value = { "/getinterviewReport" }, method = RequestMethod.GET)
+public String getInterviewReport(Model model) {
+	Candidate candidate = candService.findByName("Edward T. Tanko").get(0); //From session	
+	List<CandidateCompany>  candidateCompanies = canComService.findByCandidate(candidate);
+	//Map<String, Long> candidateCompanyCount= canComService.candidateCompanyCount(candidate);
+	
+	model.addAttribute("candidate", candidate);
+	model.addAttribute("candidateCompanies", candidateCompanies);
+	//model.addAttribute("candidateCompanyCount",candidateCompanyCount);
+	return "getinterview/getinterviewReport";
+}
 
 
 }
