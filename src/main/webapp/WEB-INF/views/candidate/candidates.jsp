@@ -28,7 +28,7 @@
 			        <td>${candidate.address.zip}</td>
 			        <td>
 			        	<a href="../candidates/${candidate.id}">detail</a> &nbsp;
-			        	<a href="../editCandidate/${candidate.id}">edit</a>
+			        	<%-- <a href="../editCandidate/${candidate.id}">edit</a> --%>
 			        </td>
 	    		</tr>
 	    	</c:forEach>

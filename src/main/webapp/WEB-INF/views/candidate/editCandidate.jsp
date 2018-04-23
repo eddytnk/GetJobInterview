@@ -22,7 +22,7 @@
 		 			<textarea class="form-control" rows="5" name="summary" id="summary" >${candidate.summary}</textarea>
 	 			</div>	 						
  			</fieldset>
- 			<fieldset>
+ 			<%-- <fieldset>
  				<legend>Address</legend>
  				<div class="form-group">
 		 			<label for="city">City:</label> 
@@ -36,10 +36,10 @@
 		 			<label for="zip">ZIP:</label> 
 		 			<input type="text" class="form-control" name="address.zip" id="zip" value ="${candidate.address.zip}"  >
 	 			</div>	 			
- 			</fieldset>
+ 			</fieldset> --%>
  			<div><button  type="submit" class="btn btn-primary">Save Changes</button></div> 
  		</form>	
- 		<fieldset> 
+ 		<!-- <fieldset> 
  			<legend>Work Experiences</legend>
  			<button>Add Work Experience</button>
  			
@@ -63,7 +63,7 @@
  			<legend>Accomplishments</legend>
  			<button>Add Accomplishment</button>
  			
- 		</fieldset>
+ 		</fieldset> -->
 
 </div>
 

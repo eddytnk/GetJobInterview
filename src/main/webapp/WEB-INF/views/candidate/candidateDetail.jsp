@@ -6,7 +6,7 @@
  			<!-- <legend> Basic Info</legend> -->
  			<!-- <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#basicInfo">Basic Info</button> 	 -->		
  			<div id="basicInfo" class="collapse  show" >
- 				<a href="">Edit Basic Info</a>
+ 				<a href="../editCandidate/${candidate.id}">Edit Basic Info</a>
  				<table width="100%"> 
 	 				<tr > 
 	 					<td width="20%">Name:</td>
