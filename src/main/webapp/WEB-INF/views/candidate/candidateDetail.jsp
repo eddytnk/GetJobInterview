@@ -64,6 +64,8 @@
 	 							<div>${experience.companyName}</div>
 	 							<div>${mapMonths[experience.fromMonth]} ${experience.fromYear} - ${mapMonths[experience.toMonth]} ${experience.toYear}</div>
 	 							<div>${experience.companyAddress.city}, ${experience.companyAddress.state}</div>
+	 							<br>
+	 							<div>Summary: ${experience.description}</div>
 	 							<div><a href="../editExperience/${experience.id }">Edit</a></div>
 	 						</td>
 	 					</tr>
@@ -79,7 +81,7 @@
  		<fieldset> 
  			<!-- <legend>Educations</legend> -->
  			<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#educations">Educations</button> 			
- 			<a href="">Add Education</a>
+ 			<a href="../addEducation/${candidate.id}">Add Education</a>
  			<div id="educations" class="collapse  show" >
  				
  			
