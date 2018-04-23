@@ -33,9 +33,9 @@ public class UserController {
 	 return "/login";
 	 }
 
-	 @RequestMapping(value = {"/", "/getinterview"}, method = RequestMethod.GET)
+	 @RequestMapping(value = {"/", }, method = RequestMethod.GET)
 	 public String welcome(Model model) {
-	 return "getinterview/getinterview";
+	 return "forward:/candidates";
 	 }
 
 }
