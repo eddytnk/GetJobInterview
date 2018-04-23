@@ -1,0 +1,9 @@
+use db_ea;
+INSERT INTO user(id,username,password) VALUES (1,'candidate@yahoo.com','candidate');
+INSERT INTO user(id,username,password) VALUES (2,'company@yahoo.com','company');
+
+INSERT INTO role(id,name) VALUES(1,'ROLE_CANDIDATE');
+INSERT INTO role(id,name) VALUES(2,'ROLE_COMPANY');
+
+INSERT INTO user_role (user_id,role_id) VALUES (1,1);
+INSERT INTO user_role (user_id,role_id) VALUES (2,2);
