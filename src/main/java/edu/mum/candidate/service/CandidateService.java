@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.mum.candidate.entity.Candidate;
+import edu.mum.candidate.entity.Education;
 import edu.mum.candidate.entity.Experience;
 import edu.mum.candidate.repository.CandidateDAO;
 import edu.mum.candidate.repository.CandidateRepository;
@@ -16,8 +17,7 @@ public class CandidateService {
 	
 	@Autowired
 	private CandidateRepository candidateRepository;
-	@Autowired
-	private ExperienceRepository experienceRepository;
+
 	
 	@Autowired
 	private CandidateDAO candidateDAO;
@@ -64,39 +64,20 @@ public class CandidateService {
 		Candidate toUpdate = getCandidateById(id);  
 		toUpdate.getExperiences().add(experience);
 		experience.setOwner(toUpdate);
-		/*toUpdate.setEmailAddress(candidate.getEmailAddress());
-		toUpdate.setTitle(candidate.getTitle());
-		toUpdate.setSummary(candidate.getSummary());
-		toUpdate.setAddress(candidate.getAddress());*/
 		candidateRepository.save(toUpdate);
 		
 		//repository.
 	}
 
-	public Experience getExperienceById(String id) {
+	public void addEducation(String id, Education education) {
 		// TODO Auto-generated method stub
-		return experienceRepository.getOne(Long.parseLong(id)); 
+		Candidate toUpdate = getCandidateById(id);  
+		toUpdate.getEducations().add(education);
+		education.setOwner(toUpdate);
+		candidateRepository.save(toUpdate);
 	}
 
-	public void updateExperience(String id, Experience experience) {
-		// TODO Auto-generated method stub
-		Experience toUpdate = getExperienceById(id); //repository.getOne(Long.parseLong(candidate.getId()+"")); 
-		//if(existing != null) candidate.setId(existing.getId());
-		toUpdate.setPosition(experience.getPosition());
-		toUpdate.setCompanyName(experience.getCompanyName());
-		toUpdate.setCompanyAddress(experience.getCompanyAddress());
-		toUpdate.setDescription(experience.getDescription());
-		toUpdate.setCurrentlyWorkHere(experience.isCurrentlyWorkHere());
-		toUpdate.setPeriodFrom(experience.getPeriodFrom());
-		toUpdate.setPeriodTo(experience.getPeriodTo());
-		toUpdate.setFromMonth(experience.getFromMonth());
-		toUpdate.setFromYear(experience.getFromYear());
-		toUpdate.setToMonth(experience.getToMonth());
-		toUpdate.setToYear(experience.getToYear());
-		experienceRepository.save(toUpdate);
-		
-		//repository.
-	}	
+	
 	
 	
 	

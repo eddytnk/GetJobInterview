@@ -43,7 +43,7 @@ public class CompanyController {
 	}
 	
 	@RequestMapping(value = "/companies/{id}", method = RequestMethod.POST)
-	public String uupdateCompany(Model model, @ModelAttribute("company") Company company) {
+	public String updateCompany(Model model, @ModelAttribute("company") Company company) {
 		companyService.saveCompany(company);
 		return "redirect:/companies";
 	}

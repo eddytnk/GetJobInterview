@@ -1,14 +1,9 @@
+<%@ include file="../header.jspf"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Add a company</title>
-</head>
-<body>
-	<form:form modelAttribute="company" action="../companies/${company.getId()}" method="post">
+<div class="container">
+	<h1>Company Details</h1>
+	<form:form modelAttribute="company"
+		action="../companies/${company.getId()}" method="post">
 		<table>
 			<tr>
 				<td>Name:</td>
@@ -26,7 +21,27 @@
 					value="${company.website}" /></td>
 			</tr>
 			<tr>
-				<td>zipcode:</td>
+				<td>Street:</td>
+				<td><input type="text" name="address.street"
+					value="${company.address.street}" /></td>
+			</tr>
+			<tr>
+				<td>City:</td>
+				<td><input type="text" name="address.city"
+					value="${company.address.city}" /></td>
+			</tr>
+			<tr>
+				<td>State:</td>
+				<td><input type="text" name="address.state"
+					value="${company.address.state}" /></td>
+			</tr>
+			<tr>
+				<td>Country:</td>
+				<td><input type="text" name="address.country"
+					value="${company.address.country}" /></td>
+			</tr>
+			<tr>
+				<td>Zipcode:</td>
 				<td><input type="text" name="address.zipcode"
 					value="${company.address.zipcode}" /></td>
 			</tr>
@@ -36,5 +51,5 @@
 	<form:form action="../deleteCompany/${company.getId()}" method="get">
 		<button type="submit">Delete</button>
 	</form:form>
-</body>
-</html>
+</div>
+<%@ include file="../footer.jspf"%>

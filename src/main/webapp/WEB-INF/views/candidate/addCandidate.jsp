@@ -45,7 +45,7 @@
  			<div><button  type="submit" class="btn btn-primary">Save</button></div>
  		</form>
  		 		
- 		<fieldset> 
+ 		<!-- <fieldset> 
  			<legend>Work Experiences</legend>
  			<button>Add Work Experience</button>
  			
@@ -69,7 +69,7 @@
  			<legend>Accomplishments</legend>
  			<button>Add Accomplishment</button>
  			
- 		</fieldset>
+ 		</fieldset> -->
  		
  		
  

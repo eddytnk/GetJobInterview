@@ -6,7 +6,7 @@
  			<!-- <legend> Basic Info</legend> -->
  			<!-- <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#basicInfo">Basic Info</button> 	 -->		
  			<div id="basicInfo" class="collapse  show" >
- 				<a href="">Edit Basic Info</a>
+ 				<a href="../editCandidate/${candidate.id}">Edit Basic Info</a>
  				<table width="100%"> 
 	 				<tr > 
 	 					<td width="20%">Name:</td>
@@ -64,6 +64,8 @@
 	 							<div>${experience.companyName}</div>
 	 							<div>${mapMonths[experience.fromMonth]} ${experience.fromYear} - ${mapMonths[experience.toMonth]} ${experience.toYear}</div>
 	 							<div>${experience.companyAddress.city}, ${experience.companyAddress.state}</div>
+	 							<br>
+	 							<div>Summary: ${experience.description}</div>
 	 							<div><a href="../editExperience/${experience.id }">Edit</a></div>
 	 						</td>
 	 					</tr>
@@ -79,9 +81,23 @@
  		<fieldset> 
  			<!-- <legend>Educations</legend> -->
  			<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#educations">Educations</button> 			
- 			<a href="">Add Education</a>
+ 			<a href="../addEducation/${candidate.id}">Add Education</a>
  			<div id="educations" class="collapse  show" >
- 				
+ 				<table class="table">
+ 					<c:forEach var="education" items="${candidate.educations}">
+ 						<tr>
+ 							<td>
+ 								<div>${education.schoolName }</div>
+ 								<div>${education.degree } , ${education.fieldStudy }  </div>
+ 								<div>${education.yearFrom } - ${education.yearTo }</div>
+ 								<br>
+	 							<div>Description: ${education.description}</div>
+	 							<div><a href="../editEducation/${education.id }">Edit</a></div>
+ 							</td>
+ 						</tr>
+ 					
+ 					</c:forEach>
+ 				</table>
  			
  			</div>
  			

@@ -69,37 +69,6 @@ public class CandidateController {
 		return "redirect:candidates";
 	}
 	
-	@RequestMapping(value = "/addExperience/{id}")
-	public String addExperience(@PathVariable("id") String id, Model model) { 		
-		model.addAttribute("candidate", candidateService.getCandidateById(id));
-		model.addAttribute("months", Helper.mapMonths().keySet());
-		model.addAttribute("mapMonths", Helper.mapMonths());
-		model.addAttribute("years", Helper.getYears());
-		model.addAttribute("selectedYear", 0);
-		return "candidate/addExperience";
-	}
 	
-	@RequestMapping(value="/addExperience/{id}",method=RequestMethod.POST)	
-	public String insertExperience(@ModelAttribute("experience") Experience experience, @PathVariable String id)
-	{
-		System.out.println("======================================HALO");
-		candidateService.addExperience(id, experience);//.addCandidate(candidate);
-		return "redirect:../candidates";
-	}	
-	@RequestMapping(value = "/editExperience/{id}")
-	public String editExperience(@PathVariable("id") String id, Model model) { 
-		model.addAttribute("experience", candidateService.getExperienceById(id));
-		model.addAttribute("months", Helper.mapMonths().keySet());
-		model.addAttribute("mapMonths", Helper.mapMonths());
-		model.addAttribute("years", Helper.getYears());
-		return "candidate/editExperience";
-	}
-	
-	@RequestMapping(value="/editExperience/{id}",method=RequestMethod.POST)
-	public String updateExperience(@ModelAttribute("experience") Experience experience, @PathVariable String id)
-	{
-		candidateService.updateExperience(id, experience);//.addCandidate(candidate);
-		return "redirect:../candidates";
-	}
 	
 }
