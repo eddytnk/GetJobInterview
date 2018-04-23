@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import org.springframework.data.annotation.Persistent;
+
 /**
  * @author: ChauKy
  * @Date: Apr 21, 2018
@@ -20,9 +22,9 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Company {
 	@Id
+	@Persistent
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long Id;
-	private String companyId;
+	private Long id;
 	private String name;
 	private String emailAddress;
 	private String website;
@@ -40,23 +42,12 @@ public class Company {
 
 
 	public Long getId() {
-		return Id;
+		return id;
 	}
 	
 
 	public void setId(Long id) {
-		Id = id;
-	}
-
-	
-	
-	public String getCompanyId() {
-		return companyId;
-	}
-
-
-	public void setCompanyId(String companyID) {
-		this.companyId = companyID;
+		this.id = id;
 	}
 
 
@@ -116,7 +107,7 @@ public class Company {
 
 	@Override
 	public String toString() {
-		return "Company [Id=" + Id + ", name=" + name + ", emailAddress=" + emailAddress + ", website=" + website
+		return "Company [Id=" + id + ", name=" + name + ", emailAddress=" + emailAddress + ", website=" + website
 				+ ", categories=" + categories + ", address=" + address + "]";
 	}
 

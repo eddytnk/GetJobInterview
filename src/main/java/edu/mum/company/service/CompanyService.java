@@ -14,8 +14,9 @@ public class CompanyService {
 	@Autowired
 	CompanyRepository companyRepository;
 	
-	public Company findCompanyById(String companyId) {
-		return companyRepository.findByCompanyId(companyId);
+	public Company findById(Long id) {
+			Optional<Company> comp = companyRepository.findById(id);
+			return comp.get();
 	}
 	
 	public List<Company> findByName(String name){
