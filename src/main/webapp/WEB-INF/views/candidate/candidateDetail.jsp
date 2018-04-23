@@ -60,10 +60,10 @@
  					<c:forEach var="experience" items="${candidate.experiences}">
 	 					<tr>
 	 						<td>
+	 							<div>${experience.position}</div>
 	 							<div>${experience.companyName}</div>
-	 							<div>
-	 								${experience.position} &nbsp; ${mapMonths[experience.fromMonth]} ${experience.fromYear} - ${mapMonths[experience.toMonth]} ${experience.toYear} &nbsp; ${experience.companyAddress.city}, ${experience.companyAddress.state} 
-	 							</div>
+	 							<div>${mapMonths[experience.fromMonth]} ${experience.fromYear} - ${mapMonths[experience.toMonth]} ${experience.toYear}</div>
+	 							<div>${experience.companyAddress.city}, ${experience.companyAddress.state}</div>
 	 							<div><a href="../editExperience/${experience.id }">Edit</a></div>
 	 						</td>
 	 					</tr>
