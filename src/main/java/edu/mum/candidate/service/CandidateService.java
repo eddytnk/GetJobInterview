@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.mum.candidate.entity.Candidate;
+import edu.mum.candidate.entity.Education;
 import edu.mum.candidate.entity.Experience;
 import edu.mum.candidate.repository.CandidateDAO;
 import edu.mum.candidate.repository.CandidateRepository;
@@ -66,6 +67,14 @@ public class CandidateService {
 		candidateRepository.save(toUpdate);
 		
 		//repository.
+	}
+
+	public void addEducation(String id, Education education) {
+		// TODO Auto-generated method stub
+		Candidate toUpdate = getCandidateById(id);  
+		toUpdate.getEducations().add(education);
+		education.setOwner(toUpdate);
+		candidateRepository.save(toUpdate);
 	}
 
 	

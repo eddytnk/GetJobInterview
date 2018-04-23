@@ -83,7 +83,21 @@
  			<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#educations">Educations</button> 			
  			<a href="../addEducation/${candidate.id}">Add Education</a>
  			<div id="educations" class="collapse  show" >
- 				
+ 				<table class="table">
+ 					<c:forEach var="education" items="${candidate.educations}">
+ 						<tr>
+ 							<td>
+ 								<div>${education.schoolName }</div>
+ 								<div>${education.degree } , ${education.fieldStudy }  </div>
+ 								<div>${education.yearFrom } - ${education.yearTo }</div>
+ 								<br>
+	 							<div>Description: ${education.description}</div>
+	 							<div><a href="../editEducation/${education.id }">Edit</a></div>
+ 							</td>
+ 						</tr>
+ 					
+ 					</c:forEach>
+ 				</table>
  			
  			</div>
  			
