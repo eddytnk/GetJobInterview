@@ -50,6 +50,7 @@
 	</form:form>
 	<form:form action="../deleteCompany/${company.getId()}" method="get">
 		<button type="submit">Delete</button>
+		<button id="cancel" name="_eventId_cancel">Cancel</button>
 	</form:form>
 </div>
 <%@ include file="../footer.jspf"%>

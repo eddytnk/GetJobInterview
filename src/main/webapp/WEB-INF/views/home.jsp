@@ -29,7 +29,7 @@
 		</c:if>
 
 		<security:authorize access="hasRole('ROLE_CANDIDATE')">
-			<li>abc test</li>
+			something will show if login with CANDIDATE account
 		</security:authorize>
 
 		<a href="www.docbao.vn" /></a>

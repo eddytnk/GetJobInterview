@@ -1,6 +1,8 @@
 package edu.mum;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -26,6 +28,18 @@ public class AppConfiguration extends WebMvcConfigurerAdapter
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
             registry.addResourceHandler("/resources/**")
                     .addResourceLocations("/resources/");
+    }
+    
+    //ChauKy: add to use for webflow
+    
+    @Bean
+    public ViewResolver viewResolver() {
+        // Example: the 'info' view logical name is mapped to the file '/WEB-INF/jsp/info.jsp'
+        InternalResourceViewResolver bean = new InternalResourceViewResolver();
+        bean.setViewClass(JstlView.class);
+        bean.setPrefix("/WEB-INF/views/");
+        bean.setSuffix(".jsp");
+        return bean;
     }
      
 }
