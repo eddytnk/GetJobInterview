@@ -94,6 +94,13 @@ public class CandidateService {
 		candidateRepository.save(toUpdate);
 	}
 
+	public void updatePictureLocalURL(String id, String pictureLocalURL) {
+		Candidate toUpdate = getCandidateById(id); 
+		toUpdate.setPictureLocalURL(pictureLocalURL);
+		candidateRepository.save(toUpdate);
+		
+	}
+
 	
 	
 	

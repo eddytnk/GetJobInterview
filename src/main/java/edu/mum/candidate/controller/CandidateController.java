@@ -1,5 +1,9 @@
 package edu.mum.candidate.controller;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,6 +18,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.mum.candidate.entity.Candidate;
 import edu.mum.candidate.entity.Experience;
@@ -53,7 +60,7 @@ public class CandidateController {
 	@RequestMapping(value="/editCandidate/{id}",method=RequestMethod.POST)
 	public String update(@ModelAttribute("candidate") Candidate candidate, @PathVariable String id)
 	{
-		candidateService.updateCandidate(id, candidate);//.addCandidate(candidate);
+		candidateService.updateCandidate(id, candidate);
 		return "redirect:../candidates";
 	}
 	
@@ -69,6 +76,46 @@ public class CandidateController {
 		return "redirect:candidates";
 	}
 	
-	
+	@RequestMapping(value = "/editProfilePict/{id}")
+	public String editProfilePict(@PathVariable("id") String id, Model model) { 
+		model.addAttribute("candidate", candidateService.getCandidateById(id));
+		return "candidate/editProfilePict";
+	}
+
+	@RequestMapping(value="/editProfilePict/{id}",method=RequestMethod.POST)
+	public String updateProfilePict(@ModelAttribute("candidate") Candidate candidate, @PathVariable String id,
+			@RequestParam("file") MultipartFile file,
+            RedirectAttributes redirectAttributes)
+	{
+		//String UPLOADED_FOLDER = "F://temp//";
+	    String UPLOADED_FOLDER = "C://Temp//ea_final_project//";
+		//String UPLOADED_FOLDER = "../"; 
+		
+		if (file.isEmpty()) {
+            redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
+            return "redirect:../candidates/"+id;
+        }
+
+        try {
+
+            // Get the file and save it somewhere
+            byte[] bytes = file.getBytes();
+            String pictureLocalURL = UPLOADED_FOLDER + file.getOriginalFilename();
+            Path path = Paths.get(pictureLocalURL);
+            Files.write(path, bytes);
+            
+            candidateService.updatePictureLocalURL(id,pictureLocalURL);
+
+            redirectAttributes.addFlashAttribute("message", 
+                        "You successfully uploaded '" + file.getOriginalFilename() + "'");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            redirectAttributes.addFlashAttribute("message", 
+                    "NOT SUCCESS '" + file.getOriginalFilename() + "'");
+        }
+
+        return "redirect:../candidates/"+id;
+	}
 	
 }
