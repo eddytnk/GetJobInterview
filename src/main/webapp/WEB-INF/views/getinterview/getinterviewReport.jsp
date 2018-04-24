@@ -29,7 +29,6 @@
 				
 			</tbody>
 	</table>
-	${candidateCompanyCount}
 	
 <div id="chartContainer" style="height: 300px; width: 100%;"></div>	
 
@@ -47,13 +46,9 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		// Change type to "column","bar", "area", "spline", "pie",etc.
 		type: "bar",
 		dataPoints: [
-			<c:forEach items="${candidateCompanies}" var="candidateCompany">
-				{ label: "apple",  y: 10  },
+			<c:forEach items="${candidateCompanyCount.keySet()}" var="candidateCompany">
+				{ label: "${candidateCompany}",  y: ${candidateCompanyCount.get(candidateCompany)}  },
 			</c:forEach>
-			{ label: "orange", y: 15  },
-			{ label: "banana", y: 25  },
-			{ label: "mango",  y: 30  },
-			{ label: "grape",  y: 28  }
 		]
 	}
 	]

@@ -89,11 +89,11 @@ public String getResume(Model model) {
 public String getInterviewReport(Model model) {
 	Candidate candidate = candService.findByName("Edward T. Tanko").get(0); //From session	
 	List<CandidateCompany>  candidateCompanies = canComService.findByCandidate(candidate);
-	//Map<String, Long> candidateCompanyCount= canComService.candidateCompanyCount(candidate);
+	Map<String, Long> candidateCompanyCount= canComService.candidateCompanyCount(candidate);
 	
 	model.addAttribute("candidate", candidate);
 	model.addAttribute("candidateCompanies", candidateCompanies);
-	//model.addAttribute("candidateCompanyCount",candidateCompanyCount);
+	model.addAttribute("candidateCompanyCount",candidateCompanyCount);
 	return "getinterview/getinterviewReport";
 }
 

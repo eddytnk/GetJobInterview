@@ -37,11 +37,13 @@ public class CandidateCompanyService {
 	public void deleteCandidateCompany(CandidateCompany candCompany) {
 		candCompRepository.delete(candCompany);
 	}
+	
 	public Map<String,Long> candidateCompanyCount(Candidate candidate){
 		Map<String,Long> map = new HashMap<String, Long>();
 		List<CandidateCompany> canComp = this.findByCandidate(candidate);
 		for(CandidateCompany cc:canComp) {
 			Company company = cc.getCompany();
+			System.out.println(company.getName());
 			map.put(company.getName(), candCompDAO.findCondidateCompanyCount(candidate, company));
 		}
 		return map;
