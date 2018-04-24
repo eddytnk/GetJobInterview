@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import edu.mum.company.entity.Company;
 import edu.mum.company.repository.CompanyRepository;
+import edu.mum.login.entity.User;
+import edu.mum.login.service.UserServiceImpl;
 
 @Service
 public class CompanyService {
@@ -34,4 +36,5 @@ public class CompanyService {
 	public void deleteCompany(Company comp) {
 		companyRepository.delete(comp);
 	}
+	
 }

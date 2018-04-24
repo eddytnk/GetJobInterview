@@ -13,7 +13,10 @@
 				<td>${company.address.state}</td>
 				<td>${company.address.country}</td>
 				<td>${company.address.zipcode}</td>
-				<td><a href="companies/${company.getId()}">edit</a></td>
+				<td><c:if
+						test="${company.emailAddress==pageContext.request.userPrincipal.name}">
+						<a href="companies/${company.getId()}">edit</a>
+					</c:if></td>
 			</tr>
 		</c:forEach>
 	</table>

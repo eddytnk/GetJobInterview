@@ -16,7 +16,7 @@
       </li>
       <security:authorize access="hasRole('ROLE_COMPANY')">
 		<li class="nav-item">
-	        <a class="nav-link" href="/company"><spring:message code="label.company" text="company" /></a>
+	        <a class="nav-link" href="/companies"><spring:message code="label.company" text="company" /></a>
 	    </li>
 	</security:authorize>
       

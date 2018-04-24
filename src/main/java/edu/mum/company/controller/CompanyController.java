@@ -4,13 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-import java.lang.*;
 
 import javax.validation.Valid;
 
@@ -22,6 +19,7 @@ public class CompanyController {
 
 	@Autowired
 	CompanyService companyService;
+
 
 	@RequestMapping(value = "/companies", method = RequestMethod.GET)
 	public String getAllCompanies(Model model) {
@@ -35,17 +33,11 @@ public class CompanyController {
 		return "company/companyDetail";
 	}
 
-//	@GetMapping("/addCompany")
-//	public String addCompany() {
-//		return "company/addCompany";
-//	}
-
 	@RequestMapping("/addCompany")
 	public String addCompany(Model model, @ModelAttribute("company") Company company) {
 		return "company/addCompany";
 	}
 	
-//	@RequestMapping(value = "/companies", method = RequestMethod.POST)
 	@RequestMapping(value = "/addCompany", method = RequestMethod.POST)
 	public String saveCompany(Model model, @ModelAttribute("company") @Valid Company company, BindingResult result) {
 		String view = "redirect:/companies";
