@@ -18,10 +18,16 @@
 	 			<td>
 	 				<table>
 	 					<tr>
-	 						<td>City:</td> <td><input type="text" class="form-control" name="companyAddress.city" id="companyAddress.city"  placeholder="Ex: California"></td>
+	 						<td>Country:</td> <td><input type="text" class="form-control" name="companyAddress.country" id="companyAddress.country"  placeholder="Ex: USA"></td>
 	 					</tr>
 	 					<tr>
 	 						<td>State:</td> <td><input type="text" class="form-control" name="companyAddress.state" id="companyAddress.state"  placeholder="Ex: Iowa"></td>
+	 					</tr>
+	 					<tr>
+	 						<td>City:</td> <td><input type="text" class="form-control" name="companyAddress.city" id="companyAddress.city"  placeholder="Ex: Fairfield"></td>
+	 					</tr>
+	 					<tr>
+	 						<td>Street:</td> <td><input type="text" class="form-control" name="companyAddress.street" id="companyAddress.street"  placeholder="Ex: Burlington Ave"></td>
 	 					</tr>
 	 					<tr>
 	 						<td>Zip:</td> <td><input type="text" class="form-control" name="companyAddress.zip" id="companyAddress.zip"  placeholder="Ex: 52557"></td>

@@ -29,16 +29,24 @@
  			<fieldset>
  				<legend>Address</legend>
  				<div class="form-group">
-		 			<label for="city">City:</label> 
-		 			<input type="text" class="form-control" name="address.city" id="city" placeholder="Enter city"  >
+		 			<label for="city">Country:</label> 
+		 			<input type="text" class="form-control" name="address.country" id="country" placeholder="Ex: USA"  >
 	 			</div>
 	 			<div class="form-group">
 		 			<label for="state">State:</label> 
-		 			<input type="text" class="form-control" name="address.state" id="state" placeholder="Enter state"  >
+		 			<input type="text" class="form-control" name="address.state" id="state" placeholder="Ex: Iowa"  >
+	 			</div>
+ 				<div class="form-group">
+		 			<label for="city">City:</label> 
+		 			<input type="text" class="form-control" name="address.city" id="city" placeholder="Ex: Fairfield"  >
+	 			</div>
+	 			<div class="form-group">
+		 			<label for="state">Street:</label> 
+		 			<input type="text" class="form-control" name="address.street" id="street" placeholder="Ex: Burlington Ave"  >
 	 			</div>
 	 			<div class="form-group">
 		 			<label for="zip">ZIP:</label> 
-		 			<input type="text" class="form-control" name="address.zip" id="zip" placeholder="Enter ZIP code"  >
+		 			<input type="text" class="form-control" name="address.zip" id="zip" placeholder="Ex: 52557"  >
 	 			</div>
 	 			
  			</fieldset>
