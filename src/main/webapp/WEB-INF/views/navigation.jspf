@@ -1,0 +1,32 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="security"
+	uri="http://www.springframework.org/security/tags"%>
+	
+	<nav class="navbar navbar-expand-lg navbar-light bg-light" >
+  <a class="navbar-brand" href="/"><i class="fas fa-home"></i></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      
+      <li class="nav-item">
+        <a class="nav-link" href="candidates"><spring:message code="label.candidate" text="candidate" /></a>
+      </li>
+      <security:authorize access="hasRole('ROLE_COMPANY')">
+		<li class="nav-item">
+	        <a class="nav-link" href="/company"><spring:message code="label.company" text="company" /></a>
+	    </li>
+	</security:authorize>
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/getinterview"><spring:message code="label.getinterview" text="getinterview" /></a>
+      </li>
+    </ul>
+    
+     <a class="btn btn-danger" href="/logout"><spring:message code="label.logout" text="logout" /></a>
+  </div>
+</nav>
+
+<br/>
