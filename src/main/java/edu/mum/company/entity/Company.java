@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.data.annotation.Persistent;
 
@@ -25,8 +27,12 @@ public class Company {
 	@Persistent
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	
+	@NotEmpty
 	private String name;
+	@Email @NotEmpty
 	private String emailAddress;
+	@NotEmpty
 	private String website;
 	
 	@ManyToMany

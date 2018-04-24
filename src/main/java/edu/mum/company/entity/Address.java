@@ -1,6 +1,7 @@
 package edu.mum.company.entity;
 
 import javax.persistence.Embeddable;
+import javax.validation.constraints.NotEmpty;
 
 /**
  * @author: ChauKy
@@ -9,10 +10,15 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class Address {
+	@NotEmpty
 	private String street;
+	@NotEmpty
 	private String city;
+	@NotEmpty
 	private String state;
+	@NotEmpty
 	private String country;
+	@NotEmpty
 	private int zipcode;
 	
 	

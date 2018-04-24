@@ -3,51 +3,67 @@
 <div class="container">
 	<h1>Add Company</h1>
 
-	<form:form modelAttribute="company" action="companies" method="post">
-		<table>
-			<tr>
-				<td>Name:</td>
-				<td><input type="text" name="name"
-					placeholder="Enter Company name" /></td>
-			</tr>
-			<tr>
-				<td>Email Address:</td>
-				<td><input type="text" name="emailAddress"
-					placeholder="Enter email address" /></td>
-			</tr>
-			<tr>
-				<td>Website:</td>
-				<td><input type="text" name="website"
-					placeholder="Enter webstie " /></td>
-			</tr>
-			<tr>
-				<td>Street:</td>
-				<td><input type="text" name="address.street"
-					placeholder="Enter street" /></td>
-			</tr>
-			<tr>
-				<td>City:</td>
-				<td><input type="text" name="address.city"
-					placeholder="Enter city" /></td>
-			</tr>
-			<tr>
-				<td>State:</td>
-				<td><input type="text" name="address.state"
-					placeholder="Enter state" /></td>
-			</tr>
-			<tr>
-				<td>Country:</td>
-				<td><input type="text" name="address.country"
-					placeholder="Enter country" /></td>
-			</tr>
-			<tr>
-				<td>Zipcode:</td>
-				<td><input type="text" name="address.zipcode"
-					placeholder="Enter zipcode" /></td>
-			</tr>
-		</table>
-		<!-- <input type="submit" /> -->
-		<button type="submit" id="add" name="_eventId_add">Add</button>
-	</form:form>
+	<form:form modelAttribute="company" action="addCompany" method="post">
+	
+		<div class="form-group">
+			<label for="name">Name:</label>
+			<form:input type="text" class="form-control" id="name" path="name"
+				placeholder="Enter Company name" />
+			<form:errors path="name" cssClass="error" />
+		</div>
+		
+		<div class="form-group">
+			<label for="name">Email Address:</label>
+			<form:input type="text" class="form-control"  path="emailAddress"
+				placeholder="Enter email address" />
+				<form:errors path="emailAddress" cssClass="error" />
+		</div>
+		
+		<div class="form-group">
+			<label for="name">Web site:</label>
+		<form:input type="text" class="form-control" path="website"
+				placeholder="Enter webstie " />
+				<form:errors path="website" cssClass="error" />
 </div>
-<%@ include file="../footer.jspf"%>
+ 			<fieldset>
+ 				<legend>Address</legend>
+<div class="form-group">
+
+	<label for="name">Street:</label>
+<form:input type="text" class="form-control" 
+		path="address.street" placeholder="Enter street" />
+		<form:errors path="address.street" cssClass="error" />
+	</div>
+	
+	<div class="form-group">
+		<label for="name">City:</label>
+		<form:input type="text" class="form-control" path="address.city"
+			placeholder="Enter city" />
+			<form:errors path="address.city" cssClass="error" />
+	</div>
+	
+	<div class="form-group">
+		<label for="name">State:</label>
+		<form:input type="text" class="form-control" path="address.state"
+			placeholder="Enter state" />
+			<form:errors path="address.state" cssClass="error" />
+	</div>
+	
+	<div class="form-group">
+		<label for="name">Country:</label>
+		<form:input type="text" class="form-control" path="address.country"
+			placeholder="Enter country" />
+			<form:errors path="address.country" cssClass="error" />
+	</div>
+	
+	<div class="form-group">
+		<label for="name">Zip code:</label>
+		<form:input type="text" class="form-control" path="address.zipcode"
+			placeholder="Enter zipcode" />
+			<form:errors path="address.zipcode" cssClass="error" />
+			</div>
+	</fieldset>		
+	<button type="submit" id="add" name="_eventId_add">Add</button> 
+	</form:form>
+	</div> 
+	<%@ include file="../footer.jspf"%>
