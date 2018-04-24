@@ -35,10 +35,15 @@ public class CandidateService {
 		toUpdate.setEmailAddress(candidate.getEmailAddress());
 		toUpdate.setTitle(candidate.getTitle());
 		toUpdate.setSummary(candidate.getSummary());
-		toUpdate.setAddress(candidate.getAddress());
+		//toUpdate.setAddress(candidate.getAddress());
 		candidateRepository.save(toUpdate);
 	}
-	
+	public void updateAddress(String id, Candidate candidate) {
+		Candidate toUpdate = getCandidateById(id); 		
+		toUpdate.setAddress(candidate.getAddress());
+		candidateRepository.save(toUpdate);
+		
+	}
 	public void deleteCandidate(String candidateId) {
 		candidateRepository.delete(getCandidateById(candidateId));
 	}
@@ -100,6 +105,8 @@ public class CandidateService {
 		candidateRepository.save(toUpdate);
 		
 	}
+
+	
 
 	
 	

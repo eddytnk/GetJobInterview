@@ -1,10 +1,9 @@
 <%@ include file="../header.jspf"%>
 
 <div class="container">
-<h1>Edit Candidate</h1>
-		<form modelAttribute="candidate" action="../editCandidate/${candidate.id}" method="POST">
+<h1>Edit Basic Info</h1>
+		<form modelAttribute="candidate" action="../editBasicInfo/${candidate.id}" method="POST">
 			<fieldset>
- 				<legend> Basic Info</legend> 			
  				<div class="form-group">
  					<label for="name">Name:</label> 
 		 			<input type="text" class="form-control" name="name" id="name" value ="${candidate.name }"  >

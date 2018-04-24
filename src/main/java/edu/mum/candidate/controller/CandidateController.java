@@ -51,18 +51,7 @@ public class CandidateController {
 		model.addAttribute("mapMonths", Helper.mapMonths());
 		return "candidate/candidateDetail";
 	}
-	
-	@RequestMapping(value = "/editCandidate/{id}")
-	public String edit(@PathVariable("id") String id, Model model) { 
-		model.addAttribute("candidate", candidateService.getCandidateById(id));
-		return "candidate/editCandidate";
-	}
-	@RequestMapping(value="/editCandidate/{id}",method=RequestMethod.POST)
-	public String update(@ModelAttribute("candidate") Candidate candidate, @PathVariable String id)
-	{
-		candidateService.updateCandidate(id, candidate);
-		return "redirect:../candidates";
-	}
+
 	
 	@RequestMapping(value = "/addCandidate")
 	public String add(Model model, @ModelAttribute("candidate")Candidate candidate) {
@@ -74,6 +63,33 @@ public class CandidateController {
 	{
 		candidateService.addCandidate(candidate);
 		return "redirect:candidates";
+	}
+	
+	@RequestMapping(value = "/editBasicInfo/{id}")
+	public String edit(@PathVariable("id") String id, Model model) { 
+		model.addAttribute("candidate", candidateService.getCandidateById(id));
+		return "candidate/editBasicInfo";
+	}
+	
+	@RequestMapping(value="/editBasicInfo/{id}",method=RequestMethod.POST)
+	public String update(@ModelAttribute("candidate") Candidate candidate, @PathVariable String id)
+	{
+		candidateService.updateCandidate(id, candidate);
+		return "redirect:../candidates";
+	}
+	
+	@RequestMapping(value = "/editAddress/{id}")
+	public String editAddress(@PathVariable("id") String id, Model model) { 
+		System.out.println("===============editAddress=========");
+		model.addAttribute("candidate", candidateService.getCandidateById(id));
+		return "candidate/editAddress";
+	}	
+	
+	@RequestMapping(value="/editAddress/{id}",method=RequestMethod.POST)
+	public String updateAddress(@ModelAttribute("candidate") Candidate candidate, @PathVariable String id)
+	{
+		candidateService.updateAddress(id, candidate);
+		return "redirect:../candidates";
 	}
 	
 	@RequestMapping(value = "/editProfilePict/{id}")

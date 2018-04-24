@@ -10,7 +10,7 @@
  			<!-- <legend> Basic Info</legend> -->
  			<!-- <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#basicInfo">Basic Info</button> 	 -->		
  			<div id="basicInfo" class="collapse  show" >
- 				<div> <a href="../editCandidate/${candidate.id}">Edit Basic Info</a> </div>
+ 				<div> <a href="../editBasicInfo/${candidate.id}">Edit Basic Info</a> </div>
  				<div><a href="../editProfilePict/${candidate.id}">Change Profile Picture</a> </div>
  				
  				<table width="100%"> 
@@ -38,7 +38,7 @@
  		<fieldset> 
 
  			<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#address">Address</button> 			
- 			<a href="">Edit Address</a>
+ 			<a href="../editAddress/${candidate.id}">Edit Address</a>
  			<div id="address" class="collapse  show" >
 	 			<table width="100%">
 	 				<tr>
