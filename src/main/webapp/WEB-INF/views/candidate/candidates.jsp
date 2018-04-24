@@ -10,9 +10,10 @@
 	        <th>Email</th>
 	        <th>Title</th>
 	        <th>Summary</th>
-	        <th>City</th>
+	        <th>Country</th>	        
 	        <th>State</th>
-	        <th>Zip</th>
+	        <th>City</th>
+	        <th>Zip Code</th>
 	        <th>Actions</th>
 	      </tr>
 	    </thead>
@@ -23,8 +24,9 @@
 			        <td>${candidate.emailAddress}</td>
 			        <td>${candidate.title}</td>
 			        <td>${candidate.summary}</td>
-			        <td>${candidate.address.city}</td>
+			        <td>${candidate.address.country}</td>
 			        <td>${candidate.address.state}</td>
+			        <td>${candidate.address.city}</td>			        
 			        <td>${candidate.address.zip}</td>
 			        <td>
 			        	<a href="../candidates/${candidate.id}">detail</a> &nbsp;

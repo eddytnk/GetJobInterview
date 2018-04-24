@@ -35,17 +35,26 @@
  			<a href="">Edit Address</a>
  			<div id="address" class="collapse  show" >
 	 			<table width="100%">
-	 				<tr > 
-	 					<td width="20%">City:</td>
-	 					<td><input type="text" class="form-control" name="name" id="name" value ="${candidate.address.city }" readonly  ></td>
-	 				</tr>
 	 				<tr>
-	 					<td>State:</td>
-	 					<td><input type="text" class="form-control" name="emailAddress"  id="emailAddress" value ="${candidate.address.state }" readonly  ></td>
+	 					<td>Country:</td>
+	 					<td><input type="text" class="form-control" value ="${candidate.address.country }" readonly  ></td>
  					</tr>
  					<tr>
+	 					<td>State:</td>
+	 					<td><input type="text" class="form-control" value ="${candidate.address.state }" readonly  ></td>
+ 					</tr>
+	 				<tr > 
+	 					<td width="20%">City:</td>
+	 					<td><input type="text" class="form-control" value ="${candidate.address.city }" readonly  ></td>
+	 				</tr>
+	 				<tr > 
+	 					<td width="20%">Street:</td>
+	 					<td><input type="text" class="form-control" value ="${candidate.address.street}" readonly  ></td>
+	 				</tr>
+	 				
+ 					<tr>
 	 					<td>Zip Code:</td>
-	 					<td><input type="text" class="form-control"  name="title" id="title" value ="${candidate.address.zip}" readonly ></td>
+	 					<td><input type="text" class="form-control"  value ="${candidate.address.zip}" readonly ></td>
  					</tr>
 	 			</table> 			
  			</div>

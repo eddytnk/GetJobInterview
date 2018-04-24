@@ -18,10 +18,16 @@
 	 			<td>
 	 				<table>
 	 					<tr>
-	 						<td>City:</td> <td><input type="text" class="form-control" name="companyAddress.city" id="companyAddress.city"  value="${experience.companyAddress.city}"></td>
+	 						<td>Country:</td> <td><input type="text" class="form-control" name="companyAddress.country" id="companyAddress.country"  value="${experience.companyAddress.country}"></td>
 	 					</tr>
 	 					<tr>
 	 						<td>State:</td> <td><input type="text" class="form-control" name="companyAddress.state" id="companyAddress.state"  value="${experience.companyAddress.state}"></td>
+	 					</tr>
+	 					<tr>
+	 						<td>City:</td> <td><input type="text" class="form-control" name="companyAddress.city" id="companyAddress.city"  value="${experience.companyAddress.city}"></td>
+	 					</tr>
+						<tr>
+	 						<td>Street:</td> <td><input type="text" class="form-control" name="companyAddress.street" id="companyAddress.street"  value="${experience.companyAddress.street}"></td>
 	 					</tr>
 	 					<tr>
 	 						<td>Zip:</td> <td><input type="text" class="form-control" name="companyAddress.zip" id="companyAddress.zip"  value="${experience.companyAddress.zip}"></td>
