@@ -1,5 +1,6 @@
 package edu.mum.getInterview.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import edu.mum.candidate.entity.Candidate;
 import edu.mum.candidate.repository.CandidateRepository;
 import edu.mum.common.Address;
+import edu.mum.common.Helper;
 import edu.mum.company.entity.Category;
 import edu.mum.company.entity.Company;
 import edu.mum.company.service.CategoryService;
@@ -45,9 +47,11 @@ public String getInterviewPage(Model model) {
 	model.addAttribute("categories",categories);
 	return "getinterview/getinterview";
 }
+
 @RequestMapping(value = { "/getinterview" }, method = RequestMethod.POST)
 public String saveInterviewPage(Model model, @RequestParam( required = false ) List<Long> company) {
 	
+	List<String> message = null;
 	if(company !=null) {
 		
 		Candidate candidate = candService.findByName("Edward T. Tanko").get(0); //From session	
@@ -59,21 +63,27 @@ public String saveInterviewPage(Model model, @RequestParam( required = false ) L
 					CandidateCompany candCom = new CandidateCompany();
 					candCom.setCandidate(candidate);
 					candCom.setCompany(com);
-					String resumeLink = "link";
+					String resumeLink = Helper.hashMd5(""+com.getId()+candidate.getId()); // a hash of companyID and CandidateID
 					candCom.setResumeLink(resumeLink);
 					candCom.setVisited(false); 
 					candCom.setCreatedAt(new Date());
 					candCom.setUpdatedAt(new Date());
+					System.out.println(resumeLink);
 					return candCom;
 				}).collect(Collectors.toList());
 			
+				message = new ArrayList<>();
 				for(CandidateCompany c: candComs) {
-					canComService.saveCandidateCompany(c); 
+					//canComService.saveCandidateCompany(c); 
+					 message.add(c.getCompany().getName());
 				}
+		System.out.println(candComs);
 	}
 	
 	List<Category> categories = categoryService.getAllCategories();
 	model.addAttribute("categories",categories);
+	model.addAttribute("message", message);
+	
 	return "getinterview/getinterview";
 }
 

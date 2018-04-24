@@ -4,6 +4,17 @@
 
 <div class="container">
 
+<c:if test="${message != null }">
+	<div class="alert alert-info">
+		<spring:message code="label.your_resume_sent_to" text="your_resume_sent_to" />
+		
+		<ul>
+			<c:forEach items="${message}" var="message">
+				<li>${message} <i class="fas fa-envelope"></i> </li>
+			</c:forEach>	
+		</ul>
+	</div>
+</c:if>
 <form action="./getinterview" method="post">
 		<div id="accordion">
 			<c:forEach items ="${categories}" var="category">

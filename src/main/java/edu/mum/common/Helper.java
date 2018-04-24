@@ -1,10 +1,14 @@
 package edu.mum.common;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.Year;
 import java.util.ArrayList;
 //import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+
+import javax.xml.bind.DatatypeConverter;
 
 public class Helper {
 
@@ -54,4 +58,21 @@ public class Helper {
 		return fileExt;
 	}
 
+	public static String hashMd5(String str){
+	    
+	    MessageDigest md = null;
+		try {
+			md = MessageDigest.getInstance("MD5");
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+	    md.update(str.getBytes());
+	    byte[] digest = md.digest();
+	    String myHash = DatatypeConverter
+	      .printHexBinary(digest);
+	     
+	    return myHash;
+}
+
+	
 }
