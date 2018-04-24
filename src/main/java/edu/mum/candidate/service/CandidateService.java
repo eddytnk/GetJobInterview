@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import edu.mum.candidate.entity.Candidate;
 import edu.mum.candidate.entity.Education;
 import edu.mum.candidate.entity.Experience;
+import edu.mum.candidate.entity.Interest;
 import edu.mum.candidate.entity.Skill;
 import edu.mum.candidate.repository.CandidateDAO;
 import edu.mum.candidate.repository.CandidateRepository;
@@ -28,16 +29,13 @@ public class CandidateService {
 	}
 	
 	public void updateCandidate(String id, Candidate candidate) {
-		Candidate toUpdate = getCandidateById(id); //repository.getOne(Long.parseLong(candidate.getId()+"")); 
-		//if(existing != null) candidate.setId(existing.getId());
+		Candidate toUpdate = getCandidateById(id); 
 		toUpdate.setName(candidate.getName());
 		toUpdate.setEmailAddress(candidate.getEmailAddress());
 		toUpdate.setTitle(candidate.getTitle());
 		toUpdate.setSummary(candidate.getSummary());
 		toUpdate.setAddress(candidate.getAddress());
 		candidateRepository.save(toUpdate);
-		
-		//repository.
 	}
 	
 	public void deleteCandidate(String candidateId) {
@@ -56,22 +54,17 @@ public class CandidateService {
 	}
 
 	public Collection<Candidate> getCandidates() {
-		// TODO Auto-generated method stub
 		return candidateRepository.findAll();
 	}
 
 	public void addExperience(String id,Experience experience) {
-		// TODO Auto-generated method stub
 		Candidate toUpdate = getCandidateById(id);  
 		toUpdate.getExperiences().add(experience);
 		experience.setOwner(toUpdate);
 		candidateRepository.save(toUpdate);
-		
-		//repository.
 	}
 
 	public void addEducation(String id, Education education) {
-		// TODO Auto-generated method stub
 		Candidate toUpdate = getCandidateById(id);  
 		toUpdate.getEducations().add(education);
 		education.setOwner(toUpdate);
@@ -79,11 +72,18 @@ public class CandidateService {
 	}
 
 	public void addSkill(String id, Skill skill) {
-		// TODO Auto-generated method stub
 		Candidate toUpdate = getCandidateById(id);  
 		toUpdate.getSkills().add(skill);
 		skill.setOwner(toUpdate);
 		candidateRepository.save(toUpdate);
+	}
+
+	public void addInterest(String id, Interest interest) {
+		Candidate toUpdate = getCandidateById(id);  
+		toUpdate.getInterests().add(interest);
+		interest.setOwner(toUpdate);
+		candidateRepository.save(toUpdate);
+		
 	}
 
 	

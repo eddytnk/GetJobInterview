@@ -136,14 +136,15 @@
  		<fieldset> 
  			<!-- <legend>Interests</legend> -->
  			<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#interests">Interests</button> 			
- 			<a href="<%-- ../addInterest/${candidate.id} --%>">Add Interest</a>
+ 			<a href="../addInterest/${candidate.id}">Add Interest</a>
  			<div id="interests" class="collapse  show" >
  				<table class="table">
  					<c:forEach var="interest" items="${candidate.interests}">
  						<tr>
  							<td>
- 								<div>..</div>
- 								<div><a href="<%-- ../editInterest/${interest.id } --%>">Edit</a></div>
+ 								<div>${interest.title }</div>
+ 								<div>Description: ${interest.description }</div>
+ 								<div><a href="../editInterest/${interest.id }">Edit</a></div>
  							</td>
  						</tr>
  					</c:forEach>
@@ -162,7 +163,8 @@
  					<c:forEach var="accomplishment" items="${candidate.accomplishments}">
  						<tr>
  							<td>
- 								<div>..</div>
+ 								<div>${accomplishment.title }</div>
+ 								<div>Description: ${accomplishment.description }</div>
  								<div><a href="<%-- ../editAccomplishment/${accomplishment.id } --%>">Edit</a></div>
  							</td>
  						</tr>
