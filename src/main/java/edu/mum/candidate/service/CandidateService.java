@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import edu.mum.candidate.entity.Candidate;
 import edu.mum.candidate.entity.Education;
 import edu.mum.candidate.entity.Experience;
+import edu.mum.candidate.entity.Skill;
 import edu.mum.candidate.repository.CandidateDAO;
 import edu.mum.candidate.repository.CandidateRepository;
 import edu.mum.candidate.repository.ExperienceRepository;
@@ -74,6 +75,14 @@ public class CandidateService {
 		Candidate toUpdate = getCandidateById(id);  
 		toUpdate.getEducations().add(education);
 		education.setOwner(toUpdate);
+		candidateRepository.save(toUpdate);
+	}
+
+	public void addSkill(String id, Skill skill) {
+		// TODO Auto-generated method stub
+		Candidate toUpdate = getCandidateById(id);  
+		toUpdate.getSkills().add(skill);
+		skill.setOwner(toUpdate);
 		candidateRepository.save(toUpdate);
 	}
 

@@ -115,9 +115,19 @@
  		<fieldset> 
  			<!-- <legend>Skills</legend> -->
  			<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#skills">Skills</button> 			
- 			<a href="">Add Skill</a>
+ 			<a href="../addSkill/${candidate.id}">Add Skill</a>
  			<div id="skills" class="collapse  show" >
- 				
+ 				<table class="table">
+ 					<c:forEach var="skill" items="${candidate.skills}">
+ 						<tr>
+ 							<td>
+ 								<div>${skill.title }</div>
+ 								<div>Description: ${skill.description }</div>
+ 								<div><a href="../editSkill/${skill.id }">Edit</a></div>
+ 							</td>
+ 						</tr>
+ 					</c:forEach>
+ 				</table>
  			
  			</div>
  			
@@ -126,9 +136,18 @@
  		<fieldset> 
  			<!-- <legend>Interests</legend> -->
  			<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#interests">Interests</button> 			
- 			<a href="">Add Interest</a>
+ 			<a href="<%-- ../addInterest/${candidate.id} --%>">Add Interest</a>
  			<div id="interests" class="collapse  show" >
- 				
+ 				<table class="table">
+ 					<c:forEach var="interest" items="${candidate.interests}">
+ 						<tr>
+ 							<td>
+ 								<div>..</div>
+ 								<div><a href="<%-- ../editInterest/${interest.id } --%>">Edit</a></div>
+ 							</td>
+ 						</tr>
+ 					</c:forEach>
+ 				</table>
  			
  			</div>
  			
@@ -137,30 +156,23 @@
  		<fieldset> 
  			<!-- <legend>Accomplishments</legend> -->
  			<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#accomplishments">Accomplishments</button> 			
- 			<a href="">Add Accomplishment</a>
+ 			<a href="<%-- ../addAccomplishment/${candidate.id} --%>">Add Accomplishment</a>
  			<div id="accomplishments" class="collapse  show" >
- 				
+ 				<table class="table">
+ 					<c:forEach var="accomplishment" items="${candidate.accomplishments}">
+ 						<tr>
+ 							<td>
+ 								<div>..</div>
+ 								<div><a href="<%-- ../editAccomplishment/${accomplishment.id } --%>">Edit</a></div>
+ 							</td>
+ 						</tr>
+ 					</c:forEach>
+ 				</table>
  			
  			</div>
  			
  		</fieldset>
-		<!-- <form modelAttribute="candidate" action="addCandidate" method="post"> -->
- 				<%-- <div class="form-group">
- 					<label>Name:</label> 
-		 			<input type="text" class="form-control" name="name" id="name" value ="${candidate.name }" readonly  >
- 				</div> --%>
- 				<%-- <div class="form-group">
-		 			<label>E-mail:</label> 
-		 			<input type="text" class="form-control" name="emailAddress"  id="emailAddress" value ="${candidate.emailAddress }" readonly  >
-	 			</div> --%>
-	 			<%-- <div class="form-group">
-		 			<label>Title:</label> 
-		 			<input type="text" class="form-control"  name="title" id="title" value ="${candidate.title}" readonly >
-	 			</div> --%>
-	 			<%-- <div class="form-group">
-		 			<label for="summary">Summary:</label> 
-		 			<textarea class="form-control" rows="5" name="summary" id="summary" readonly>${candidate.summary}</textarea>
-	 			</div> --%>
+		
 </div>
 
 <%@ include file="../footer.jspf"%>
