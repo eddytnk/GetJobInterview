@@ -2,6 +2,8 @@ package edu.mum;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -15,6 +17,11 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan
 public class AppConfiguration extends WebMvcConfigurerAdapter
 {
+	 @Bean //titin: for upload file purpose
+	 public MultipartResolver multipartResolver() {
+	        return new StandardServletMultipartResolver();
+	 }
+	 
 	 @Override
 	    public void configureViewResolvers(ViewResolverRegistry registry) {
 	        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
