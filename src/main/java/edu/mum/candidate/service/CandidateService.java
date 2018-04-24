@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import edu.mum.candidate.entity.Accomplishment;
 import edu.mum.candidate.entity.Candidate;
 import edu.mum.candidate.entity.Education;
 import edu.mum.candidate.entity.Experience;
@@ -84,6 +85,13 @@ public class CandidateService {
 		interest.setOwner(toUpdate);
 		candidateRepository.save(toUpdate);
 		
+	}
+
+	public void addAccomplishment(String id, Accomplishment accomplishment) {
+		Candidate toUpdate = getCandidateById(id);  
+		toUpdate.getAccomplishments().add(accomplishment);
+		accomplishment.setOwner(toUpdate);
+		candidateRepository.save(toUpdate);
 	}
 
 	
