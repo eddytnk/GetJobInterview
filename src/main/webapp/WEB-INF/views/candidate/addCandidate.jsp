@@ -3,26 +3,30 @@
 <div class="container">
 <h1>Add Candidate</h1>
  
- 		<form modelAttribute="candidate" action="addCandidate" method="post">
+ 		<form:form modelAttribute="candidate" action="addCandidate" method="post">
+ 			<%-- <form:errors path="*" cssClass="errorBlock" element="div"/> --%>
 	 		<fieldset>
 	 			<legend> Basic Info</legend>
  			
 	 			<div class="form-group">
 		 			<label for="name">Name:</label> 
-		 			<input type="text" class="form-control" name="name" id="name" placeholder="Enter official name"  >
+		 			<form:input type="text" class="form-control" path="name" placeholder="Enter official name" />
+		 			<form:errors path="name" cssClass="error"/>
 	 			</div>
 	 			<div class="form-group">
 		 			<label for="emailAddress">E-mail:</label> 
-		 			<input type="text" class="form-control" name="emailAddress"  id="emailAddress" placeholder="Enter official e-mail address" >
+		 			<form:input type="text" class="form-control" path="emailAddress" placeholder="Enter official e-mail address" />
+	 				<form:errors path="emailAddress" cssClass="error"/>
 	 			</div>
 	 			<div class="form-group">
 		 			<label for="title">Title:</label> 
-		 			<input type="text" class="form-control"  name="title" id="title" placeholder="Enter current job title" >
+		 			<form:input type="text" class="form-control"  path="title" placeholder="Enter current job title" />
+		 			<form:errors path="title" cssClass="error"/>
 	 			</div>
 	 			<div class="form-group">
-		 			<label for="summary">Summary:</label> 
-		 			<!-- <input type="text" class="form-control"  name="summary" id="summary" placeholder="Enter your summary" > -->
-		 			<textarea class="form-control" rows="5" name="summary" id="summary" placeholder="Enter work experience summary"></textarea>
+		 			<label for="summary">Summary:</label> 		 			
+		 			<form:textarea class="form-control" rows="5" path="summary" placeholder="Enter work experience summary"></form:textarea>
+	 				<form:errors path="summary" cssClass="error"/>
 	 			</div>			
  			
  			</fieldset>
@@ -30,59 +34,32 @@
  				<legend>Address</legend>
  				<div class="form-group">
 		 			<label for="city">Country:</label> 
-		 			<input type="text" class="form-control" name="address.country" id="country" placeholder="Ex: USA"  >
+		 			<form:input type="text" class="form-control" path="address.country" id="country" placeholder="Ex: USA" />
+		 			<form:errors path="address.country" cssClass="error"/>
 	 			</div>
 	 			<div class="form-group">
 		 			<label for="state">State:</label> 
-		 			<input type="text" class="form-control" name="address.state" id="state" placeholder="Ex: Iowa"  >
+		 			<form:input type="text" class="form-control" path="address.state" id="state" placeholder="Ex: Iowa" />
+		 			<form:errors path="address.state" cssClass="error"/>
 	 			</div>
  				<div class="form-group">
 		 			<label for="city">City:</label> 
-		 			<input type="text" class="form-control" name="address.city" id="city" placeholder="Ex: Fairfield"  >
+		 			<form:input type="text" class="form-control" path="address.city" id="city" placeholder="Ex: Fairfield" />
+		 			<form:errors path="address.city" cssClass="error"/>
 	 			</div>
 	 			<div class="form-group">
 		 			<label for="state">Street:</label> 
-		 			<input type="text" class="form-control" name="address.street" id="street" placeholder="Ex: Burlington Ave"  >
+		 			<form:input type="text" class="form-control" path="address.street" id="street" placeholder="Ex: Burlington Ave" />
+		 			<form:errors path="address.street" cssClass="error"/>
 	 			</div>
 	 			<div class="form-group">
 		 			<label for="zip">ZIP:</label> 
-		 			<input type="text" class="form-control" name="address.zip" id="zip" placeholder="Ex: 52557"  >
-	 			</div>
-	 			
+		 			<form:input type="text" class="form-control" path="address.zip" id="zip" placeholder="Ex: 52557" />
+		 			<form:errors path="address.zip" cssClass="error"/>
+	 			</div>	 			
  			</fieldset>
  			<div><button  type="submit" class="btn btn-primary">Save</button></div>
- 		</form>
- 		 		
- 		<!-- <fieldset> 
- 			<legend>Work Experiences</legend>
- 			<button>Add Work Experience</button>
- 			
- 		</fieldset>
- 		<fieldset> 
- 			<legend>Educations</legend>
- 			<button>Add Education</button>
- 			
- 		</fieldset>
- 		<fieldset> 
- 			<legend>Skills</legend>
- 			<button>Add Skill</button>
- 			
- 		</fieldset>
- 		<fieldset> 
- 			<legend>Interests</legend>
- 			<button>Add Interest</button>
- 			
- 		</fieldset>
- 		<fieldset> 
- 			<legend>Accomplishments</legend>
- 			<button>Add Accomplishment</button>
- 			
- 		</fieldset> -->
- 		
- 		
- 
-	
- 
+ 		</form:form> 
 </div>
 
 <%@ include file="../footer.jspf"%>

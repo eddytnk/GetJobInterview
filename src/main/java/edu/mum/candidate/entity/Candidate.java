@@ -2,6 +2,9 @@ package edu.mum.candidate.entity;
 
 import java.util.*;
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 import edu.mum.common.Address;
 
@@ -10,15 +13,17 @@ import edu.mum.common.Address;
 public class Candidate {
 	@Id @GeneratedValue
 	private Long id;
-	
+	@NotEmpty
 	private String name;
+	@NotEmpty @Email
 	private String emailAddress;
 	private String pictureLocalURL;
 	
-	@Embedded
+	@Embedded @Valid
 	Address address;
-	
+	@NotEmpty
 	private String title;
+	@NotEmpty
 	private String summary;
 	
 	

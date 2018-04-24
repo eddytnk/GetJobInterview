@@ -2,7 +2,7 @@
 
 <div class="container">
 <!-- <div><img src="C:\Temp\ea_final_project\smile.jpg" class="rounded" alt="Cinque Terre" width="304" height="236"></div> -->
-<div><img src="smile.jpg" alt="Cinque Terre" /></div>
+<div><img src="/resources/images/smile.jpg" alt="Cinque Terre" /></div>
 
 <h1>Candidate Profile</h1>
 <div style="color:red">${message }</div>

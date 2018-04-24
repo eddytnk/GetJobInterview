@@ -1,13 +1,18 @@
 package edu.mum.common;
 
 import javax.persistence.Embeddable;
+import javax.validation.constraints.NotEmpty;
 
 @Embeddable
 public class Address {
+	@NotEmpty
 	private String country;
 	private String state;
+	@NotEmpty
 	private String city;
+	@NotEmpty
 	private String street;
+	@NotEmpty
 	private String zip;
 	public String getCountry() {
 		return country;

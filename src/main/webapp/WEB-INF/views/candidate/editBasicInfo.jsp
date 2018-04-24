@@ -2,67 +2,33 @@
 
 <div class="container">
 <h1>Edit Basic Info</h1>
-		<form modelAttribute="candidate" action="../editBasicInfo/${candidate.id}" method="POST">
+		<form:form modelAttribute="candidate" action="../editBasicInfo/${candidate.id}" method="POST">
 			<fieldset>
  				<div class="form-group">
  					<label for="name">Name:</label> 
-		 			<input type="text" class="form-control" name="name" id="name" value ="${candidate.name }"  >
+		 			<form:input type="text" class="form-control" path="name" id="name" value ="${candidate.name }" />
+		 			<form:errors path="name" cssClass="error"/>
  				</div>
  				<div class="form-group">
 		 			<label for="emailAddress">E-mail:</label> 
-		 			<input type="text" class="form-control" name="emailAddress"  id="emailAddress" value ="${candidate.emailAddress }" >
+		 			<form:input type="text" class="form-control" path="emailAddress"  id="emailAddress" value ="${candidate.emailAddress }" />
+	 				<form:errors path="emailAddress" cssClass="error"/>
 	 			</div>
 	 			<div class="form-group">
 		 			<label for="title">Title:</label> 
-		 			<input type="text" class="form-control"  name="title" id="title" value ="${candidate.title}" >
+		 			<form:input type="text" class="form-control"  path="title" id="title" value ="${candidate.title}" />
+		 			<form:errors path="title" cssClass="error"/>
 	 			</div>
 	 			<div class="form-group">
 		 			<label for="summary">Summary:</label> 
-		 			<textarea class="form-control" rows="5" name="summary" id="summary" >${candidate.summary}</textarea>
+		 			<form:textarea class="form-control" rows="5" path="summary" id="summary" value ="${candidate.summary}"/>
+		 			<form:errors path="summary" cssClass="error"/>
 	 			</div>	 						
  			</fieldset>
- 			<%-- <fieldset>
- 				<legend>Address</legend>
- 				<div class="form-group">
-		 			<label for="city">City:</label> 
-		 			<input type="text" class="form-control" name="address.city" id="city" value ="${candidate.address.city}"  >
-	 			</div>
-	 			<div class="form-group">
-		 			<label for="state">State:</label> 
-		 			<input type="text" class="form-control" name="address.state" id="state" value ="${candidate.address.state}"  >
-	 			</div>
-	 			<div class="form-group">
-		 			<label for="zip">ZIP:</label> 
-		 			<input type="text" class="form-control" name="address.zip" id="zip" value ="${candidate.address.zip}"  >
-	 			</div>	 			
- 			</fieldset> --%>
+ 			
  			<div><button  type="submit" class="btn btn-primary">Save Changes</button></div> 
- 		</form>	
- 		<!-- <fieldset> 
- 			<legend>Work Experiences</legend>
- 			<button>Add Work Experience</button>
- 			
- 		</fieldset>
- 		<fieldset> 
- 			<legend>Educations</legend>
- 			<button>Add Education</button>
- 			
- 		</fieldset>
- 		<fieldset> 
- 			<legend>Skills</legend>
- 			<button>Add Skill</button>
- 			
- 		</fieldset>
- 		<fieldset> 
- 			<legend>Interests</legend>
- 			<button>Add Interest</button>
- 			
- 		</fieldset>
- 		<fieldset> 
- 			<legend>Accomplishments</legend>
- 			<button>Add Accomplishment</button>
- 			
- 		</fieldset> -->
+ 		</form:form>
+ 		
 
 </div>
 

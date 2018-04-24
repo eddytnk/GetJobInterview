@@ -11,9 +11,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,10 +62,18 @@ public class CandidateController {
 	}
 	
 	@RequestMapping(value="/addCandidate",method=RequestMethod.POST)
-	public String insert(Model model,@ModelAttribute("candidate") Candidate candidate)
+	public String insert(Model model,@ModelAttribute("candidate") @Valid Candidate candidate, BindingResult result)
 	{
-		candidateService.addCandidate(candidate);
-		return "redirect:candidates";
+		String view = "redirect:candidates";
+		if(!result.hasErrors()) {
+			candidateService.addCandidate(candidate);
+		}
+		else {
+			view="candidate/addCandidate";
+		}
+		
+		
+		return view;
 	}
 	
 	@RequestMapping(value = "/editBasicInfo/{id}")
@@ -72,10 +83,21 @@ public class CandidateController {
 	}
 	
 	@RequestMapping(value="/editBasicInfo/{id}",method=RequestMethod.POST)
-	public String update(@ModelAttribute("candidate") Candidate candidate, @PathVariable String id)
+	public String update(@ModelAttribute("candidate") @Valid Candidate candidate, BindingResult result, @PathVariable String id)
 	{
-		candidateService.updateCandidate(id, candidate);
-		return "redirect:../candidates";
+		//candidateService.updateCandidate(id, candidate);
+		//return "redirect:../candidates";
+		
+		String view = "redirect:../candidates";
+		if(!result.hasErrors()) {
+			candidateService.updateCandidate(id, candidate);
+		}
+		else {
+			view="candidate/editBasicInfo";
+		}
+		
+		
+		return view;
 	}
 	
 	@RequestMapping(value = "/editAddress/{id}")
