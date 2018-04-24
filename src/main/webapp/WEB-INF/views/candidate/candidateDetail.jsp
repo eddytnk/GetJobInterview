@@ -2,17 +2,15 @@
 
 <div class="container">
 <!-- <div><img src="C:\Temp\ea_final_project\smile.jpg" class="rounded" alt="Cinque Terre" width="304" height="236"></div> -->
-<div><img src="/resources/images/smile.jpg" alt="Cinque Terre" /></div>
-
+<div><img src="${candidate.pictureLocalURL}" class="img-thumbnail" alt="${candidate.name}" width="304" height="236" /></div>
+<div><a href="../editProfilePict/${candidate.id}">Change Profile Picture</a> </div>
 <h1>Candidate Profile</h1>
 <div style="color:red">${message }</div>
 		<fieldset>
  			<!-- <legend> Basic Info</legend> -->
  			<!-- <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#basicInfo">Basic Info</button> 	 -->		
  			<div id="basicInfo" class="collapse  show" >
- 				<div> <a href="../editBasicInfo/${candidate.id}">Edit Basic Info</a> </div>
- 				<div><a href="../editProfilePict/${candidate.id}">Change Profile Picture</a> </div>
- 				
+ 				<div> <a href="../editBasicInfo/${candidate.id}">Edit Basic Info</a> </div> 				
  				<table width="100%"> 
 	 				<tr > 
 	 					<td width="20%">Name:</td>

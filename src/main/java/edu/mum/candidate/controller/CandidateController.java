@@ -1,5 +1,6 @@
 package edu.mum.candidate.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,6 +12,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,9 @@ import edu.mum.common.Helper;
 //@RequestMapping(value="/candidate")
 public class CandidateController {
 	private CandidateService candidateService;
+	
+	@Autowired
+    ServletContext context;
 	
 	@Autowired
 	public void setCandidateService(CandidateService candidateService) {
@@ -125,24 +130,36 @@ public class CandidateController {
 			@RequestParam("file") MultipartFile file,
             RedirectAttributes redirectAttributes)
 	{
-		//String UPLOADED_FOLDER = "F://temp//";
-	    String UPLOADED_FOLDER = "C://Temp//ea_final_project//";
-		//String UPLOADED_FOLDER = "../"; 
+		String UPLOADED_FOLDER; //= "F://temp//";
+	    String relativeWebPath = "/resources/images/";
+	    String absoluteFilePath = context.getRealPath(relativeWebPath);
+	    UPLOADED_FOLDER = absoluteFilePath;
+	    //File uploadedFile = new File(absoluteFilePath, "your file name");
 		
 		if (file.isEmpty()) {
             redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
             return "redirect:../candidates/"+id;
         }
-
+		
         try {
-
+        	String fileExt= Helper.getImageExt(file.getOriginalFilename());
+        	
+        	if(fileExt.equals("")) {
+        		redirectAttributes.addFlashAttribute("message", "File is not uploadable. Only .jpg and some other image files allowed.");
+                return "redirect:../candidates/"+id;
+        	}
+        	
             // Get the file and save it somewhere
             byte[] bytes = file.getBytes();
-            String pictureLocalURL = UPLOADED_FOLDER + file.getOriginalFilename();
+            //String pictureLocalURL = UPLOADED_FOLDER + file.getOriginalFilename();
+            
+            String fileName = "candidate"+id+fileExt;
+            String pictureLocalURL = absoluteFilePath + fileName;//file.getOriginalFilename();
             Path path = Paths.get(pictureLocalURL);
             Files.write(path, bytes);
             
-            candidateService.updatePictureLocalURL(id,pictureLocalURL);
+            
+            candidateService.updatePictureLocalURL(id,relativeWebPath+fileName);
 
             redirectAttributes.addFlashAttribute("message", 
                         "You successfully uploaded '" + file.getOriginalFilename() + "'");

@@ -36,5 +36,22 @@ public class Helper {
 		map.put(12, "December");		
 		return map;		
 	}
+	public static List<String> getImageExtentions(){
+		List<String> imageExtentions = new ArrayList<String>();
+		imageExtentions.add(".jpg");
+		imageExtentions.add(".bmp");
+		imageExtentions.add(".png");
+		return imageExtentions;		
+	}
+	public static String getImageExt(String fileName) {
+		String fileExt="";
+		List<String> allowedExtentions = getImageExtentions();
+    	for(String ext : allowedExtentions) {
+    		if(fileName.endsWith(ext)) {
+    			fileExt=ext;
+    		}
+    	}
+		return fileExt;
+	}
 
 }
