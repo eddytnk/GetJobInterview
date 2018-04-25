@@ -10,19 +10,33 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      
-      <li class="nav-item">
-        <a class="nav-link" href="candidates"><spring:message code="label.candidate" text="candidate" /></a>
-      </li>
+      <security:authorize access="hasRole('ROLE_CANDIDATE')">
+	      <li class="nav-item">
+	        <a class="nav-link" href="myProfile"><spring:message code="label.my_candidate_profile" text="My Candidate Profile" /></a>
+	      </li>
+      </security:authorize>
       <security:authorize access="hasRole('ROLE_COMPANY')">
-		<li class="nav-item">
-	        <a class="nav-link" href="/companies"><spring:message code="label.company" text="company" /></a>
-	    </li>
-	</security:authorize>
-      
+      	<li class="nav-item">
+	        <a class="nav-link" href="/companies"><spring:message code="label.my__company_profile" text="My Company Profile" /></a>
+	     </li>
+      </security:authorize>      
       <li class="nav-item">
-        <a class="nav-link" href="/getinterview"><spring:message code="label.getinterview" text="getinterview" /></a>
+        <a class="nav-link" href="candidates"><spring:message code="label.browse_candidates" text="Browse Candidates" /></a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="companies"><spring:message code="label.browse_Companies" text="Browse Companies" /></a>
+      </li>            
+      <security:authorize access="hasRole('ROLE_CANDIDATE')">
+      	<li class="nav-item">
+        	<a class="nav-link" href="/getinterview"><spring:message code="label.getinterview" text="getinterview" /></a>
+      	</li>
+	  </security:authorize>
+	  <security:authorize access="hasRole('ROLE_COMPANY')">
+      	<li class="nav-item">
+        	<a class="nav-link" href="/getinterview"><spring:message code="label.submitted_resumes" text="Submitted Resumes" /></a>
+      	</li>
+	  </security:authorize>     
+      
     </ul>
     
      <a class="btn btn-danger" href="/logout"><spring:message code="label.logout" text="logout" /></a>

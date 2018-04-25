@@ -2,8 +2,10 @@
 
 <div class="container">
 <h1>Candidates</h1>
-	<a href="addCandidate"> Add Candidate</a>
-	<div>TEST: <a href="myProfile"> My Profile</a></div>	
+	<security:authorize access="hasRole('ROLE_ADMIN')">
+		<a href="addCandidate"> Add Candidate</a>
+	</security:authorize>	
+	<!-- <div>TEST: <a href="myProfile"> My Profile</a></div> -->	
 	<table class="table table-hover">
 	    <thead>
 	      <tr>

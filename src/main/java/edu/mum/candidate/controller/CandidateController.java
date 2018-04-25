@@ -43,8 +43,8 @@ import edu.mum.login.service.UserCandidateService;
 //@RequestMapping(value="/candidate")
 public class CandidateController {
 	private CandidateService candidateService;
-	/*@Autowired
-	private UserService userService;*/
+	@Autowired
+	private UserService userService;
 	@Autowired
 	private UserCandidateService userCandidateService;
 	@Autowired
@@ -69,8 +69,11 @@ public class CandidateController {
 	}*/
 	@RequestMapping(value = "/candidates/{id}", method = RequestMethod.GET)
 	public String get(@PathVariable("id") String id, Model model, Principal principal) { 
+		User u = userService.findByUsername(principal.getName());
 		model.addAttribute("candidate", candidateService.getCandidateById(id));
-		model.addAttribute("userCandidate", userCandidateService.getCandidateByUserName(principal.getName()));
+		if(u.getUserType() == UserType.CANDIDATE) {
+			model.addAttribute("userCandidate", userCandidateService.getCandidateByUserName(principal.getName()));
+		}
 		model.addAttribute("mapMonths", Helper.mapMonths());
 		return "candidate/candidateDetail";
 	}
