@@ -43,8 +43,8 @@ import edu.mum.login.service.UserCandidateService;
 //@RequestMapping(value="/candidate")
 public class CandidateController {
 	private CandidateService candidateService;
-	@Autowired
-	private UserService userService;
+	/*@Autowired
+	private UserService userService;*/
 	@Autowired
 	private UserCandidateService userCandidateService;
 	@Autowired
@@ -73,12 +73,12 @@ public class CandidateController {
 		String view = "candidate/candidateDetail";		
 		if(principal != null ) {
 			System.out.println("principal.getName(): "+principal.getName());
-				User user = userService.findByUsername(principal.getName());
-				System.out.println(user.getUserType());
+				//User user = userService.findByUsername(principal.getName());
+				/*System.out.println(user.getUserType());
 				if(user.getUserType() == UserType.CANDIDATE) {
 					System.out.println("user.getUserType() == UserType.CANDIDATE)");
-				}
-				model.addAttribute("candidate", userCandidateService.getCandidateByUser(user));
+				}*/
+				model.addAttribute("candidate", userCandidateService.getCandidateByUserName(principal.getName()));
 				model.addAttribute("mapMonths", Helper.mapMonths());
 			
 		}

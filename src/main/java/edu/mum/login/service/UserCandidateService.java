@@ -10,9 +10,17 @@ import edu.mum.login.entity.User;
 public class UserCandidateService {
 	@Autowired
 	private UserCandidateDAO usercandidateDAO;
+	@Autowired
+	private UserService userService;
 	
 	public Candidate getCandidateByUser(User user) {
 		// TODO Auto-generated method stub
 		return usercandidateDAO.findUserId(user.getId());
 	}
+	
+	public Candidate getCandidateByUserName(String userName) {
+		User user = userService.findByUsername(userName);		
+		return getCandidateByUser(user);
+	}
+	
 }
