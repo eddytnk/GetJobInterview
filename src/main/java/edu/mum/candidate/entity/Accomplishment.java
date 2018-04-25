@@ -11,6 +11,8 @@ public class Accomplishment {
 	@JoinColumn(name="candidate_id")
 	private Candidate owner;
 	private String title;
+	@Lob
+	@Column(length=2000)
 	private String description; // wanna separate to Accomplishment types?  
 	
 	public Long getId() {

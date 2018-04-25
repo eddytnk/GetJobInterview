@@ -20,7 +20,7 @@ public class Experience {
 	
 	@Embedded
 	private Address companyAddress;
-	
+	@Lob
 	private String description;	
 	private boolean isCurrentlyWorkHere;
 	

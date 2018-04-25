@@ -27,10 +27,6 @@ public class Candidate {
 	@NotEmpty
 	private String summary;
 	
-	@OneToOne
-	@JoinColumn(name="user_id")
-	private User owner;
-	
 	@OneToMany(mappedBy="owner" , cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Experience> experiences = new ArrayList<Experience>();
 	
@@ -143,15 +139,6 @@ public class Candidate {
 	public void setAccomplishments(List<Accomplishment> accomplishments) {
 		this.accomplishments = accomplishments;
 	}
-	
-	public User getOwner() {
-		return owner;
-	}
-
-	public void setOwner(User owner) {
-		this.owner = owner;
-	}
-
 	//convenience methods: start
 	public void addAccomplishment(Accomplishment accomplishment) {
 		accomplishments.add(accomplishment);
