@@ -36,9 +36,10 @@ public class InterestController {
 	@RequestMapping(value="/addInterest/{id}",method=RequestMethod.POST)	
 	public String insertInterest(@ModelAttribute("interest") Interest interest, @PathVariable String id)
 	{
-		System.out.println("======================================HALO");
+		//System.out.println("======================================HALO");
+		String view = "redirect:../candidates/"+id; 
 		candidateService.addInterest(id, interest);
-		return "redirect:../candidates";
+		return view; //"redirect:../candidates";
 	}	
 	@RequestMapping(value = "/editInterest/{id}")
 	public String editInterest(@PathVariable("id") String id, Model model) { 
@@ -49,8 +50,9 @@ public class InterestController {
 	@RequestMapping(value="/editInterest/{id}",method=RequestMethod.POST)
 	public String updateInterest(@ModelAttribute("interest") Interest interest, @PathVariable String id)
 	{
+		String view = "redirect:../candidates/"+interestService.getInterestById(id).getOwner().getId();
 		interestService.updateInterest(id, interest);
-		return "redirect:../candidates";
+		return view; //"redirect:../candidates";
 	}
 
 }

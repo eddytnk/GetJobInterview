@@ -36,9 +36,10 @@ public class SkillController {
 	@RequestMapping(value="/addSkill/{id}",method=RequestMethod.POST)	
 	public String insertSkill(@ModelAttribute("skill") Skill skill, @PathVariable String id)
 	{
-		System.out.println("======================================HALO");
+		//System.out.println("======================================HALO");
+		String view = "redirect:../candidates/"+id; 
 		candidateService.addSkill(id, skill);
-		return "redirect:../candidates";
+		return view; //"redirect:../candidates";
 	}	
 	@RequestMapping(value = "/editSkill/{id}")
 	public String editSkill(@PathVariable("id") String id, Model model) { 
@@ -49,8 +50,9 @@ public class SkillController {
 	@RequestMapping(value="/editSkill/{id}",method=RequestMethod.POST)
 	public String updateSkill(@ModelAttribute("skill") Skill skill, @PathVariable String id)
 	{
+		String view = "redirect:../candidates/"+skillService.getSkillById(id).getOwner().getId();
 		skillService.updateSkill(id, skill);
-		return "redirect:../candidates";
+		return view; //"redirect:../candidates";
 	}
 
 }

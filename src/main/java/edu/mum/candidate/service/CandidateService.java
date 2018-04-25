@@ -27,6 +27,8 @@ public class CandidateService {
 	private CandidateDAO candidateDAO;
 	
 	public void addCandidate(Candidate candidate) {
+		String pictureLocalURL = "/resources/images/candidate_default.jpg";
+		candidate.setPictureLocalURL(pictureLocalURL);
 		candidateRepository.save(candidate);
 	}
 	

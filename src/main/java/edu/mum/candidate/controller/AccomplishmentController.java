@@ -36,9 +36,10 @@ public class AccomplishmentController {
 	@RequestMapping(value="/addAccomplishment/{id}",method=RequestMethod.POST)	
 	public String insertAccomplishment(@ModelAttribute("accomplishment") Accomplishment accomplishment, @PathVariable String id)
 	{
-		System.out.println("======================================HALO");
+		//System.out.println("======================================HALO");
+		String view = "redirect:../candidates/"+id; 
 		candidateService.addAccomplishment(id, accomplishment);
-		return "redirect:../candidates";
+		return view; //"redirect:../candidates";
 	}	
 	@RequestMapping(value = "/editAccomplishment/{id}")
 	public String editAccomplishment(@PathVariable("id") String id, Model model) { 
@@ -49,8 +50,9 @@ public class AccomplishmentController {
 	@RequestMapping(value="/editAccomplishment/{id}",method=RequestMethod.POST)
 	public String updateAccomplishment(@ModelAttribute("accomplishment") Accomplishment accomplishment, @PathVariable String id)
 	{
+		String view = "redirect:../candidates/"+accomplishmentService.getAccomplishmentById(id).getOwner().getId(); 
 		accomplishmentService.updateAccomplishment(id, accomplishment);
-		return "redirect:../candidates";
+		return view; //"redirect:../candidates";
 	}
 
 }

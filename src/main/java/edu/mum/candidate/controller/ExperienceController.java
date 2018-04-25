@@ -40,9 +40,10 @@ public class ExperienceController {
 	@RequestMapping(value="/addExperience/{id}",method=RequestMethod.POST)	
 	public String insertExperience(@ModelAttribute("experience") Experience experience, @PathVariable String id)
 	{
-		System.out.println("======================================HALO");
+		//System.out.println("======================================HALO");
+		String view = "redirect:../candidates/"+id; 
 		candidateService.addExperience(id, experience);//.addCandidate(candidate);
-		return "redirect:../candidates";
+		return view; //"redirect:../candidates";
 	}	
 	@RequestMapping(value = "/editExperience/{id}")
 	public String editExperience(@PathVariable("id") String id, Model model) { 
@@ -56,8 +57,9 @@ public class ExperienceController {
 	@RequestMapping(value="/editExperience/{id}",method=RequestMethod.POST)
 	public String updateExperience(@ModelAttribute("experience") Experience experience, @PathVariable String id)
 	{
+		String view = "redirect:../candidates/"+experienceService.getExperienceById(id).getOwner().getId();  
 		experienceService.updateExperience(id, experience);//.addCandidate(candidate);
-		return "redirect:../candidates";
+		return view; //"redirect:../candidates";
 	}
 
 }

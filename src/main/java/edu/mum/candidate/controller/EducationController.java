@@ -40,9 +40,10 @@ public class EducationController {
 	@RequestMapping(value="/addEducation/{id}",method=RequestMethod.POST)	
 	public String insertEducation(@ModelAttribute("education") Education education, @PathVariable String id)
 	{
-		System.out.println("======================================HALO");
+		//System.out.println("======================================HALO");
+		String view = "redirect:../candidates/"+id; 
 		candidateService.addEducation(id, education);//.addCandidate(candidate);
-		return "redirect:../candidates";
+		return view; //"redirect:../candidates";
 	}	
 	@RequestMapping(value = "/editEducation/{id}")
 	public String editEducation(@PathVariable("id") String id, Model model) { 
@@ -56,8 +57,9 @@ public class EducationController {
 	@RequestMapping(value="/editEducation/{id}",method=RequestMethod.POST)
 	public String updateEducation(@ModelAttribute("education") Education education, @PathVariable String id)
 	{
+		String view = "redirect:../candidates/"+educationService.getEducationById(id).getOwner().getId(); 
 		educationService.updateEducation(id, education);//.addCandidate(candidate);
-		return "redirect:../candidates";
+		return view; //"redirect:../candidates";
 	}
 
 }

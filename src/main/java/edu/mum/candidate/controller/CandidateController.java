@@ -121,7 +121,7 @@ public class CandidateController {
 		//candidateService.updateCandidate(id, candidate);
 		//return "redirect:../candidates";
 		
-		String view = "redirect:../candidates";
+		String view = "redirect:../candidates/"+id; //"redirect:../candidates";
 		if(!result.hasErrors()) {
 			candidateService.updateCandidate(id, candidate);
 		}
