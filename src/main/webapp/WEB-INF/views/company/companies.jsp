@@ -37,7 +37,7 @@
 		</tbody>
 	</table>
 
-	<security:authorize access="hasRole('ROLE_COMPANY')">
+	<security:authorize access="hasRole('ROLE_ADMIN')">
 		<a href="addCompany"> Add a company</a>
 	</security:authorize>
 

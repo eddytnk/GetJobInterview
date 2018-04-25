@@ -25,6 +25,7 @@ import edu.mum.candidate.entity.Candidate;
 import edu.mum.candidate.repository.CandidateRepository;
 import edu.mum.common.Address;
 import edu.mum.common.Helper;
+import edu.mum.common.UserType;
 import edu.mum.company.entity.Category;
 import edu.mum.company.entity.Company;
 import edu.mum.company.service.CategoryService;
@@ -56,7 +57,11 @@ public class GetInterviewController {
 	UserCandidateService userCandService;
 	
 @RequestMapping(value = { "/getinterview" }, method = RequestMethod.GET)
-public String getInterviewPage(Model model) {
+public String getInterviewPage(Model model, Principal principal) {
+	User user = userService.findByUsername(principal.getName());
+	if(user.getUserType() != UserType.CANDIDATE) {		
+		return "forward:/companies";				
+	}
 	List<Category> categories = categoryService.getAllCategories();
 	
 	model.addAttribute("categories",categories);
@@ -69,10 +74,14 @@ public String saveInterviewPage(Model model,
 			List<Long> company,
 			@RequestHeader String host,
 			Principal principal) {
+	User user = userService.findByUsername(principal.getName());
+	if(user.getUserType() != UserType.CANDIDATE) {		
+		return "forward:/companies";				
+	}
 	
 	List<String> message = null;
 	if(company !=null) {
-		User user = userService.findByUsername(principal.getName());
+		
 		Candidate candidate = userCandService.getCandidateByUser(user);//candService.findByName("Edward T. Tanko").get(0); //From session	
 		List<CandidateCompany> candComs = company.stream()
 				.distinct()

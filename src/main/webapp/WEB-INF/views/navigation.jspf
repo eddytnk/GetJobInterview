@@ -31,11 +31,11 @@
         	<a class="nav-link" href="/getinterview"><spring:message code="label.getinterview" text="getinterview" /></a>
       	</li>
 	  </security:authorize>
-	  <security:authorize access="hasRole('ROLE_COMPANY')">
+	  <%-- <security:authorize access="hasRole('ROLE_COMPANY')">
       	<li class="nav-item">
         	<a class="nav-link" href="/getinterview"><spring:message code="label.submitted_resumes" text="Submitted Resumes" /></a>
       	</li>
-	  </security:authorize>     
+	  </security:authorize>   --%>   
       
     </ul>
     
