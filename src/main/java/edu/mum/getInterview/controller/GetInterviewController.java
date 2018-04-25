@@ -79,7 +79,7 @@ public String saveInterviewPage(Model model,
 		return "forward:/companies";				
 	}
 	
-	List<String> message = null;
+	List<String> message = new ArrayList<>();
 	if(company !=null) {
 		
 		Candidate candidate = userCandService.getCandidateByUser(user);//candService.findByName("Edward T. Tanko").get(0); //From session	
@@ -98,7 +98,7 @@ public String saveInterviewPage(Model model,
 					return candCom;
 				}).collect(Collectors.toList());
 			
-				message = new ArrayList<>();
+				
 				
 				
 				final String uri = "http://localhost:8081/sendmails/";
@@ -125,6 +125,9 @@ public String saveInterviewPage(Model model,
 						message.add(co.getName()+ " <i class='fas fa-times' style='color:red'></i>");
 					}
 				}
+	}else {
+		 message = new ArrayList<>();
+		message.add("Please select a company <i class='fas fa-times' style='color:red'></i>");
 	}
 	
 	List<Category> categories = categoryService.getAllCategories();
