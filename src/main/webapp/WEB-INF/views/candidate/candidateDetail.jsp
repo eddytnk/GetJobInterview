@@ -1,16 +1,17 @@
 <%@ include file="../header.jspf"%>
 
 <div class="container">
-<!-- <div><img src="C:\Temp\ea_final_project\smile.jpg" class="rounded" alt="Cinque Terre" width="304" height="236"></div> -->
 <div><img src="${candidate.pictureLocalURL}" class="img-thumbnail" alt="${candidate.name}" width="304" height="236" /></div>
-<div><a href="../editProfilePict/${candidate.id}">Change Profile Picture</a> </div>
+<security:authorize access="hasRole('ROLE_CANDIDATE')">
+	<div><a href="../editProfilePict/${candidate.id}">Change Profile Picture</a> </div>
+</security:authorize>
 <h1>Candidate Profile</h1>
 <div style="color:red">${message }</div>
-		<fieldset>
- 			<!-- <legend> Basic Info</legend> -->
- 			<!-- <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#basicInfo">Basic Info</button> 	 -->		
+		<fieldset> 					
  			<div id="basicInfo" class="collapse  show" >
- 				<div> <a href="../editBasicInfo/${candidate.id}">Edit Basic Info</a> </div> 				
+ 				<security:authorize access="hasRole('ROLE_CANDIDATE')">
+ 					<div> <a href="../editBasicInfo/${candidate.id}">Edit Basic Info</a> </div>
+				</security:authorize>				 				 				
  				<table width="100%"> 
 	 				<tr > 
 	 					<td width="20%">Name:</td>
@@ -35,8 +36,10 @@
  		<br>
  		<fieldset> 
 
- 			<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#address">Address</button> 			
- 			<a href="../editAddress/${candidate.id}">Edit Address</a>
+ 			<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#address">Address</button> 
+ 			<security:authorize access="hasRole('ROLE_CANDIDATE')">
+ 				<a href="../editAddress/${candidate.id}">Edit Address</a>
+			</security:authorize>
  			<div id="address" class="collapse  show" >
 	 			<table width="100%">
 	 				<tr>
@@ -54,8 +57,7 @@
 	 				<tr > 
 	 					<td width="20%">Street:</td>
 	 					<td><input type="text" class="form-control" value ="${candidate.address.street}" readonly  ></td>
-	 				</tr>
-	 				
+	 				</tr>	 				
  					<tr>
 	 					<td>Zip Code:</td>
 	 					<td><input type="text" class="form-control"  value ="${candidate.address.zip}" readonly ></td>
@@ -65,9 +67,10 @@
  		</fieldset>
  		 <br>		
  		<fieldset> 
- 			<!-- <legend>Work Experiences</legend> -->
  			<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#workExperiences">Work Experiences</button> 			
- 			<a href="../addExperience/${candidate.id}">Add Work Experience</a>
+ 			<security:authorize access="hasRole('ROLE_CANDIDATE')">
+ 				<a href="../addExperience/${candidate.id}">Add Work Experience</a>
+			</security:authorize> 			
  			<div id="workExperiences" class="collapse  show" >
  				<table class="table">
  					<c:forEach var="experience" items="${candidate.experiences}">
@@ -79,24 +82,24 @@
 	 							<div>${experience.companyAddress.city}, ${experience.companyAddress.state}</div>
 	 							<br>
 	 							<div>Summary: ${experience.description}</div>
-	 							<div class="row">
- 									<div class="col">
- 										<a href="../editExperience/${experience.id }">
- 												<button class="btn btn-link btn-sm">Edit</button>
- 										</a>
- 									</div>
-  									<div class="col">
-  										<form:form action="../deleteExperience/${experience.id }" method="POST">
-											<button type="submit" class="btn btn-link btn-sm">Remove</button>
-										</form:form>
-									</div>
-									<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
- 								</div>
+	 							<security:authorize access="hasRole('ROLE_CANDIDATE')">
+	 								<div class="row">
+	 									<div class="col">
+	 										<a href="../editExperience/${experience.id }">
+	 												<button class="btn btn-link btn-sm">Edit</button>
+	 										</a>
+	 									</div>
+	  									<div class="col">
+	  										<form:form action="../deleteExperience/${experience.id }" method="POST">
+												<button type="submit" class="btn btn-link btn-sm">Remove</button>
+											</form:form>
+										</div>
+										<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
+	 								</div> 								
+								</security:authorize>	 							
 	 						</td>
 	 					</tr>
-	 					<!-- <tr>
-	 						<td></td>
-	 					</tr> -->
+
  					</c:forEach>
  				</table>
  			
@@ -104,9 +107,10 @@
  		</fieldset>
  		<br>
  		<fieldset> 
- 			<!-- <legend>Educations</legend> -->
- 			<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#educations">Educations</button> 			
- 			<a href="../addEducation/${candidate.id}">Add Education</a>
+ 			<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#educations">Educations</button>
+ 			<security:authorize access="hasRole('ROLE_CANDIDATE')">
+ 				<a href="../addEducation/${candidate.id}">Add Education</a>
+			</security:authorize> 			
  			<div id="educations" class="collapse  show" >
  				<table class="table">
  					<c:forEach var="education" items="${candidate.educations}">
@@ -117,33 +121,33 @@
  								<div>${education.yearFrom } - ${education.yearTo }</div>
  								<br>
 	 							<div>Description: ${education.description}</div>
-	 							<div class="row">
- 									<div class="col">
- 										<a href="../editEducation/${education.id }">
- 												<button class="btn btn-link btn-sm">Edit</button>
- 										</a>
- 									</div>
-  									<div class="col">
-  										<form:form action="../deleteEducation/${education.id }" method="POST">
-											<button type="submit" class="btn btn-link btn-sm">Remove</button>
-										</form:form>
-									</div>
-									<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
- 								</div>
+	 							<security:authorize access="hasRole('ROLE_CANDIDATE')">
+	 								<div class="row">
+	 									<div class="col">
+	 										<a href="../editEducation/${education.id }">
+	 												<button class="btn btn-link btn-sm">Edit</button>
+	 										</a>
+	 									</div>
+	  									<div class="col">
+	  										<form:form action="../deleteEducation/${education.id }" method="POST">
+												<button type="submit" class="btn btn-link btn-sm">Remove</button>
+											</form:form>
+										</div>
+										<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
+	 								</div> 								
+								</security:authorize>	 							
  							</td>
- 						</tr>
- 					
+ 						</tr> 					
  					</c:forEach>
- 				</table>
- 			
- 			</div>
- 			
+ 				</table> 			
+ 			</div> 			
  		</fieldset>
  		<br>
  		<fieldset> 
- 			<!-- <legend>Skills</legend> -->
- 			<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#skills">Skills</button> 			
- 			<a href="../addSkill/${candidate.id}">Add Skill</a>
+ 			<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#skills">Skills</button>
+ 			<security:authorize access="hasRole('ROLE_CANDIDATE')">
+ 				<a href="../addSkill/${candidate.id}">Add Skill</a>
+			</security:authorize> 			
  			<div id="skills" class="collapse  show" >
  				<table class="table">
  					<c:forEach var="skill" items="${candidate.skills}">
@@ -151,19 +155,21 @@
  							<td>
  								<div>${skill.title }</div>
  								<div>Description: ${skill.description }</div>
- 								<div class="row">
- 									<div class="col">
- 										<a href="../editSkill/${skill.id }">
- 												<button class="btn btn-link btn-sm">Edit</button>
- 										</a>
- 									</div>
-  									<div class="col">
-  										<form:form action="../deleteSkill/${skill.id }" method="POST">
-											<button type="submit" class="btn btn-link btn-sm">Remove</button>
-										</form:form>
-									</div>
-									<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
- 								</div>
+ 								<security:authorize access="hasRole('ROLE_CANDIDATE')">
+ 									<div class="row">
+	 									<div class="col">
+	 										<a href="../editSkill/${skill.id }">
+	 												<button class="btn btn-link btn-sm">Edit</button>
+	 										</a>
+	 									</div>
+	  									<div class="col">
+	  										<form:form action="../deleteSkill/${skill.id }" method="POST">
+												<button type="submit" class="btn btn-link btn-sm">Remove</button>
+											</form:form>
+										</div>
+										<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
+	 								</div>
+								</security:authorize>
  							</td>
  						</tr>
  					</c:forEach>
@@ -174,9 +180,10 @@
  		</fieldset>
  		<br>
  		<fieldset> 
- 			<!-- <legend>Interests</legend> -->
  			<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#interests">Interests</button> 			
- 			<a href="../addInterest/${candidate.id}">Add Interest</a>
+ 			<security:authorize access="hasRole('ROLE_CANDIDATE')"> 			
+ 				<a href="../addInterest/${candidate.id}">Add Interest</a>
+			</security:authorize>
  			<div id="interests" class="collapse  show" >
  				<table class="table">
  					<c:forEach var="interest" items="${candidate.interests}">
@@ -184,19 +191,21 @@
  							<td>
  								<div>${interest.title }</div>
  								<div>Description: ${interest.description }</div>
- 								<div class="row">
- 									<div class="col">
- 										<a href="../editInterest/${interest.id }">
- 												<button class="btn btn-link btn-sm">Edit</button>
- 										</a>
- 									</div>
-  									<div class="col">
-  										<form:form action="../deleteInterest/${interest.id }" method="POST">
-											<button type="submit" class="btn btn-link btn-sm">Remove</button>
-										</form:form>
-									</div>
-									<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
- 								</div>
+ 								<security:authorize access="hasRole('ROLE_CANDIDATE')">
+ 									<div class="row">
+	 									<div class="col">
+	 										<a href="../editInterest/${interest.id }">
+	 												<button class="btn btn-link btn-sm">Edit</button>
+	 										</a>
+	 									</div>
+	  									<div class="col">
+	  										<form:form action="../deleteInterest/${interest.id }" method="POST">
+												<button type="submit" class="btn btn-link btn-sm">Remove</button>
+											</form:form>
+										</div>
+										<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
+	 								</div>
+								</security:authorize>
  							</td>
  						</tr>
  					</c:forEach>
@@ -207,9 +216,10 @@
  		</fieldset>
  		<br>
  		<fieldset> 
- 			<!-- <legend>Accomplishments</legend> -->
  			<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#accomplishments">Accomplishments</button> 			
- 			<a href="../addAccomplishment/${candidate.id}">Add Accomplishment</a>
+ 			<security:authorize access="hasRole('ROLE_CANDIDATE')">
+ 				<a href="../addAccomplishment/${candidate.id}">Add Accomplishment</a>
+			</security:authorize> 			
  			<div id="accomplishments" class="collapse  show" >
  				<table class="table">
  					<c:forEach var="accomplishment" items="${candidate.accomplishments}">
@@ -217,19 +227,21 @@
  							<td>
  								<div>${accomplishment.title }</div>
  								<div>Description: ${accomplishment.description }</div>
- 								<div class="row">
- 									<div class="col">
- 										<a href="../editAccomplishment/${accomplishment.id }">
- 												<button class="btn btn-link btn-sm">Edit</button>
- 										</a>
- 									</div>
-  									<div class="col">
-  										<form:form action="../deleteAccomplishment/${accomplishment.id }" method="POST">
-											<button type="submit" class="btn btn-link btn-sm">Remove</button>
-										</form:form>
-									</div>
-									<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
- 								</div>
+ 								<security:authorize access="hasRole('ROLE_CANDIDATE')">
+ 									<div class="row">
+	 									<div class="col">
+	 										<a href="../editAccomplishment/${accomplishment.id }">
+	 												<button class="btn btn-link btn-sm">Edit</button>
+	 										</a>
+	 									</div>
+	  									<div class="col">
+	  										<form:form action="../deleteAccomplishment/${accomplishment.id }" method="POST">
+												<button type="submit" class="btn btn-link btn-sm">Remove</button>
+											</form:form>
+										</div>
+										<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
+	 								</div>
+								</security:authorize> 								
  							</td>
  						</tr>
  					</c:forEach>
