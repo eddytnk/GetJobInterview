@@ -6,10 +6,9 @@
 			<div style="text-align: right;">
 			</div>
 			<div style="text-align: center;">
-			${candidate.pictureLocalURL }
 			    <c:choose>
 			         <c:when test = "${candidate.pictureLocalURL != ''}">
-			           <img class="img-thumbnail" src="${pictureLocalURL }"
+			           <img class="img-thumbnail" src="${candidate.pictureLocalURL }" 
 					style="width: 200px; height: 200px; border-radius: 100%; margin-top: -150px"
 					alt="Avater Image">
 			         </c:when>

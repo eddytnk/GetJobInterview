@@ -1,5 +1,6 @@
 package edu.mum.getInterview.controller;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,6 +34,9 @@ import edu.mum.getInterview.dtos.ResponseMessage;
 import edu.mum.getInterview.dtos.SendMailDTO;
 import edu.mum.getInterview.entity.CandidateCompany;
 import edu.mum.getInterview.services.CandidateCompanyService;
+import edu.mum.login.entity.User;
+import edu.mum.login.service.UserCandidateService;
+import edu.mum.login.service.UserService;
 
 
 @Controller
@@ -46,6 +50,10 @@ public class GetInterviewController {
 	CategoryService categoryService;
 	@Autowired
 	CandidateRepository candService;
+	@Autowired
+	UserService userService;
+	@Autowired
+	UserCandidateService userCandService;
 	
 @RequestMapping(value = { "/getinterview" }, method = RequestMethod.GET)
 public String getInterviewPage(Model model) {
@@ -59,12 +67,13 @@ public String getInterviewPage(Model model) {
 public String saveInterviewPage(Model model, 
 		@RequestParam( required = false ) 
 			List<Long> company,
-			@RequestHeader String host) {
+			@RequestHeader String host,
+			Principal principal) {
 	
 	List<String> message = null;
 	if(company !=null) {
-		
-		Candidate candidate = candService.findByName("Edward T. Tanko").get(0); //From session	
+		User user = userService.findByUsername(principal.getName());
+		Candidate candidate = userCandService.getCandidateByUser(user);//candService.findByName("Edward T. Tanko").get(0); //From session	
 		List<CandidateCompany> candComs = company.stream()
 				.distinct()
 				.map(comId->{
@@ -117,8 +126,10 @@ public String saveInterviewPage(Model model,
 }
 
 @RequestMapping(value = { "/resume" }, method = RequestMethod.GET)
-public String getResume(Model model) {
-	Candidate candidate = candService.findByName("Edward T. Tanko").get(0); //From session		
+public String getResume(Model model, Principal principal) {
+	User user = userService.findByUsername(principal.getName());
+	Candidate candidate = userCandService.getCandidateByUser(user);
+	//Candidate candidate = candService.findByName("Edward T. Tanko").get(0); //From session		
 	model.addAttribute("candidate", candidate);
 	model.addAttribute("mapMonths", Helper.mapMonths());
 	return "getinterview/resume";
@@ -161,8 +172,10 @@ public String viewResume(Model model, @PathVariable("code") String code) {
 
 
 @RequestMapping(value = { "/getinterviewReport" }, method = RequestMethod.GET)
-public String getInterviewReport(Model model) {
-	Candidate candidate = candService.findByName("Edward T. Tanko").get(0); //From session	
+public String getInterviewReport(Model model, Principal principal) {
+	//Candidate candidate = candService.findByName("Edward T. Tanko").get(0); //From session	
+	User user = userService.findByUsername(principal.getName());
+	Candidate candidate = userCandService.getCandidateByUser(user);
 	List<CandidateCompany>  candidateCompanies = canComService.findByCandidate(candidate);
 	Map<String, Long> candidateCompanyCount= canComService.candidateCompanyCount(candidate);
 	
