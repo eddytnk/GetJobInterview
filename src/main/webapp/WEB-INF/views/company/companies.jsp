@@ -36,6 +36,10 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<a href="addCompany"> Add a company</a>
+
+	<security:authorize access="hasRole('ROLE_COMPANY')">
+		<a href="addCompany"> Add a company</a>
+	</security:authorize>
+
 </div>
 <%@ include file="../footer.jspf"%>
