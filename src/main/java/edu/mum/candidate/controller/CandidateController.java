@@ -75,7 +75,7 @@ public class CandidateController {
 			model.addAttribute("userCandidate", userCandidateService.getCandidateByUserName(principal.getName()));
 		}
 		model.addAttribute("mapMonths", Helper.mapMonths());
-		return "candidate/candidateDetail";
+		return "candidate/resume";
 	}
 	@RequestMapping(value = "/myProfile")
 	public String get( Model model, Principal principal) { 
