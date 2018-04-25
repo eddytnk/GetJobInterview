@@ -61,13 +61,19 @@ public class CandidateController {
 		return "candidate/candidates";
 	}
 	
-	@RequestMapping(value = "/candidates/{id}", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/candidates/{id}", method = RequestMethod.GET)
 	public String get(@PathVariable("id") String id, Model model) { 
 		model.addAttribute("candidate", candidateService.getCandidateById(id));
 		model.addAttribute("mapMonths", Helper.mapMonths());
 		return "candidate/candidateDetail";
+	}*/
+	@RequestMapping(value = "/candidates/{id}", method = RequestMethod.GET)
+	public String get(@PathVariable("id") String id, Model model, Principal principal) { 
+		model.addAttribute("candidate", candidateService.getCandidateById(id));
+		model.addAttribute("userCandidate", userCandidateService.getCandidateByUserName(principal.getName()));
+		model.addAttribute("mapMonths", Helper.mapMonths());
+		return "candidate/candidateDetail";
 	}
-	
 	@RequestMapping(value = "/myProfile")
 	public String get( Model model, Principal principal) { 
 		String view = "candidate/candidateDetail";		
@@ -79,6 +85,7 @@ public class CandidateController {
 					System.out.println("user.getUserType() == UserType.CANDIDATE)");
 				}*/
 				model.addAttribute("candidate", userCandidateService.getCandidateByUserName(principal.getName()));
+				model.addAttribute("userCandidate", userCandidateService.getCandidateByUserName(principal.getName()));
 				model.addAttribute("mapMonths", Helper.mapMonths());
 			
 		}
@@ -117,11 +124,8 @@ public class CandidateController {
 	
 	@RequestMapping(value="/editBasicInfo/{id}",method=RequestMethod.POST)
 	public String update(@ModelAttribute("candidate") @Valid Candidate candidate, BindingResult result, @PathVariable String id)
-	{
-		//candidateService.updateCandidate(id, candidate);
-		//return "redirect:../candidates";
-		
-		String view = "redirect:../candidates/"+id; //"redirect:../candidates";
+	{	
+		String view = "redirect:../candidates/"+id; 
 		if(!result.hasErrors()) {
 			candidateService.updateCandidate(id, candidate);
 		}
@@ -143,8 +147,9 @@ public class CandidateController {
 	@RequestMapping(value="/editAddress/{id}",method=RequestMethod.POST)
 	public String updateAddress(@ModelAttribute("candidate") Candidate candidate, @PathVariable String id)
 	{
+		String view = "redirect:../candidates/"+id;
 		candidateService.updateAddress(id, candidate);
-		return "redirect:../candidates";
+		return view; //"redirect:../candidates";
 	}
 	
 	@RequestMapping(value = "/editProfilePict/{id}")

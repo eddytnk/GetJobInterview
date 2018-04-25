@@ -3,14 +3,18 @@
 <div class="container">
 <div><img src="${candidate.pictureLocalURL}" class="img-thumbnail" alt="${candidate.name}" width="304" height="236" /></div>
 <security:authorize access="hasRole('ROLE_CANDIDATE')">
-	<div><a href="../editProfilePict/${candidate.id}">Change Profile Picture</a> </div>
+	<c:if test="${candidate.id == userCandidate.id}">
+		<div><a href="../editProfilePict/${candidate.id}">Change Profile Picture</a> </div>
+	</c:if>
 </security:authorize>
 <h1>Candidate Profile</h1>
 <div style="color:red">${message }</div>
 		<fieldset> 					
  			<div id="basicInfo" class="collapse  show" >
  				<security:authorize access="hasRole('ROLE_CANDIDATE')">
- 					<div> <a href="../editBasicInfo/${candidate.id}">Edit Basic Info</a> </div>
+ 					<c:if test="${candidate.id == userCandidate.id}">
+ 						<div> <a href="../editBasicInfo/${candidate.id}">Edit Basic Info</a> </div>
+					</c:if>
 				</security:authorize>				 				 				
  				<table width="100%"> 
 	 				<tr > 
@@ -38,7 +42,9 @@
 
  			<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#address">Address</button> 
  			<security:authorize access="hasRole('ROLE_CANDIDATE')">
- 				<a href="../editAddress/${candidate.id}">Edit Address</a>
+ 				<c:if test="${candidate.id == userCandidate.id}">
+ 					<a href="../editAddress/${candidate.id}">Edit Address</a>
+				</c:if>
 			</security:authorize>
  			<div id="address" class="collapse  show" >
 	 			<table width="100%">
@@ -69,7 +75,9 @@
  		<fieldset> 
  			<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#workExperiences">Work Experiences</button> 			
  			<security:authorize access="hasRole('ROLE_CANDIDATE')">
- 				<a href="../addExperience/${candidate.id}">Add Work Experience</a>
+ 				<c:if test="${candidate.id == userCandidate.id}"> 					
+ 					<a href="../addExperience/${candidate.id}">Add Work Experience</a>
+				</c:if>
 			</security:authorize> 			
  			<div id="workExperiences" class="collapse  show" >
  				<table class="table">
@@ -83,19 +91,21 @@
 	 							<br>
 	 							<div>Summary: ${experience.description}</div>
 	 							<security:authorize access="hasRole('ROLE_CANDIDATE')">
-	 								<div class="row">
-	 									<div class="col">
-	 										<a href="../editExperience/${experience.id }">
-	 												<button class="btn btn-link btn-sm">Edit</button>
-	 										</a>
-	 									</div>
-	  									<div class="col">
-	  										<form:form action="../deleteExperience/${experience.id }" method="POST">
-												<button type="submit" class="btn btn-link btn-sm">Remove</button>
-											</form:form>
-										</div>
-										<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
-	 								</div> 								
+	 								<c:if test="${candidate.id == userCandidate.id}">
+		 								<div class="row">
+		 									<div class="col">
+		 										<a href="../editExperience/${experience.id }">
+		 												<button class="btn btn-link btn-sm">Edit</button>
+		 										</a>
+		 									</div>
+		  									<div class="col">
+		  										<form:form action="../deleteExperience/${experience.id }" method="POST">
+													<button type="submit" class="btn btn-link btn-sm">Remove</button>
+												</form:form>
+											</div>
+											<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
+		 								</div> 			
+									</c:if>					
 								</security:authorize>	 							
 	 						</td>
 	 					</tr>
@@ -109,7 +119,9 @@
  		<fieldset> 
  			<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#educations">Educations</button>
  			<security:authorize access="hasRole('ROLE_CANDIDATE')">
- 				<a href="../addEducation/${candidate.id}">Add Education</a>
+ 				<c:if test="${candidate.id == userCandidate.id}">
+ 					<a href="../addEducation/${candidate.id}">Add Education</a>
+				</c:if>
 			</security:authorize> 			
  			<div id="educations" class="collapse  show" >
  				<table class="table">
@@ -122,19 +134,21 @@
  								<br>
 	 							<div>Description: ${education.description}</div>
 	 							<security:authorize access="hasRole('ROLE_CANDIDATE')">
-	 								<div class="row">
-	 									<div class="col">
-	 										<a href="../editEducation/${education.id }">
-	 												<button class="btn btn-link btn-sm">Edit</button>
-	 										</a>
-	 									</div>
-	  									<div class="col">
-	  										<form:form action="../deleteEducation/${education.id }" method="POST">
-												<button type="submit" class="btn btn-link btn-sm">Remove</button>
-											</form:form>
-										</div>
-										<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
-	 								</div> 								
+	 								<c:if test="${candidate.id == userCandidate.id}">
+		 								<div class="row">
+		 									<div class="col">
+		 										<a href="../editEducation/${education.id }">
+		 												<button class="btn btn-link btn-sm">Edit</button>
+		 										</a>
+		 									</div>
+		  									<div class="col">
+		  										<form:form action="../deleteEducation/${education.id }" method="POST">
+													<button type="submit" class="btn btn-link btn-sm">Remove</button>
+												</form:form>
+											</div>
+											<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
+		 								</div> 	
+									</c:if>							
 								</security:authorize>	 							
  							</td>
  						</tr> 					
@@ -146,7 +160,9 @@
  		<fieldset> 
  			<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#skills">Skills</button>
  			<security:authorize access="hasRole('ROLE_CANDIDATE')">
- 				<a href="../addSkill/${candidate.id}">Add Skill</a>
+ 				<c:if test="${candidate.id == userCandidate.id}">
+ 					<a href="../addSkill/${candidate.id}">Add Skill</a>
+				</c:if>
 			</security:authorize> 			
  			<div id="skills" class="collapse  show" >
  				<table class="table">
@@ -156,19 +172,21 @@
  								<div>${skill.title }</div>
  								<div>Description: ${skill.description }</div>
  								<security:authorize access="hasRole('ROLE_CANDIDATE')">
- 									<div class="row">
-	 									<div class="col">
-	 										<a href="../editSkill/${skill.id }">
-	 												<button class="btn btn-link btn-sm">Edit</button>
-	 										</a>
-	 									</div>
-	  									<div class="col">
-	  										<form:form action="../deleteSkill/${skill.id }" method="POST">
-												<button type="submit" class="btn btn-link btn-sm">Remove</button>
-											</form:form>
-										</div>
-										<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
-	 								</div>
+ 									<c:if test="${candidate.id == userCandidate.id}">
+	 									<div class="row">
+		 									<div class="col">
+		 										<a href="../editSkill/${skill.id }">
+		 												<button class="btn btn-link btn-sm">Edit</button>
+		 										</a>
+		 									</div>
+		  									<div class="col">
+		  										<form:form action="../deleteSkill/${skill.id }" method="POST">
+													<button type="submit" class="btn btn-link btn-sm">Remove</button>
+												</form:form>
+											</div>
+											<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
+		 								</div>
+									</c:if>
 								</security:authorize>
  							</td>
  						</tr>
@@ -181,8 +199,10 @@
  		<br>
  		<fieldset> 
  			<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#interests">Interests</button> 			
- 			<security:authorize access="hasRole('ROLE_CANDIDATE')"> 			
- 				<a href="../addInterest/${candidate.id}">Add Interest</a>
+ 			<security:authorize access="hasRole('ROLE_CANDIDATE')">
+ 				<c:if test="${candidate.id == userCandidate.id}"> 			
+ 					<a href="../addInterest/${candidate.id}">Add Interest</a>
+				</c:if>
 			</security:authorize>
  			<div id="interests" class="collapse  show" >
  				<table class="table">
@@ -192,25 +212,26 @@
  								<div>${interest.title }</div>
  								<div>Description: ${interest.description }</div>
  								<security:authorize access="hasRole('ROLE_CANDIDATE')">
- 									<div class="row">
-	 									<div class="col">
-	 										<a href="../editInterest/${interest.id }">
-	 												<button class="btn btn-link btn-sm">Edit</button>
-	 										</a>
-	 									</div>
-	  									<div class="col">
-	  										<form:form action="../deleteInterest/${interest.id }" method="POST">
-												<button type="submit" class="btn btn-link btn-sm">Remove</button>
-											</form:form>
-										</div>
-										<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
-	 								</div>
+ 									<c:if test="${candidate.id == userCandidate.id}">
+	 									<div class="row">
+		 									<div class="col">
+		 										<a href="../editInterest/${interest.id }">
+		 												<button class="btn btn-link btn-sm">Edit</button>
+		 										</a>
+		 									</div>
+		  									<div class="col">
+		  										<form:form action="../deleteInterest/${interest.id }" method="POST">
+													<button type="submit" class="btn btn-link btn-sm">Remove</button>
+												</form:form>
+											</div>
+											<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
+		 								</div>
+									</c:if>
 								</security:authorize>
  							</td>
  						</tr>
  					</c:forEach>
- 				</table>
- 			
+ 				</table> 			
  			</div>
  			
  		</fieldset>
@@ -218,7 +239,9 @@
  		<fieldset> 
  			<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#accomplishments">Accomplishments</button> 			
  			<security:authorize access="hasRole('ROLE_CANDIDATE')">
- 				<a href="../addAccomplishment/${candidate.id}">Add Accomplishment</a>
+ 				<c:if test="${candidate.id == userCandidate.id}">
+ 					<a href="../addAccomplishment/${candidate.id}">Add Accomplishment</a>
+				</c:if>
 			</security:authorize> 			
  			<div id="accomplishments" class="collapse  show" >
  				<table class="table">
@@ -228,19 +251,21 @@
  								<div>${accomplishment.title }</div>
  								<div>Description: ${accomplishment.description }</div>
  								<security:authorize access="hasRole('ROLE_CANDIDATE')">
- 									<div class="row">
-	 									<div class="col">
-	 										<a href="../editAccomplishment/${accomplishment.id }">
-	 												<button class="btn btn-link btn-sm">Edit</button>
-	 										</a>
-	 									</div>
-	  									<div class="col">
-	  										<form:form action="../deleteAccomplishment/${accomplishment.id }" method="POST">
-												<button type="submit" class="btn btn-link btn-sm">Remove</button>
-											</form:form>
-										</div>
-										<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
-	 								</div>
+ 									<c:if test="${candidate.id == userCandidate.id}">
+	 									<div class="row">
+		 									<div class="col">
+		 										<a href="../editAccomplishment/${accomplishment.id }">
+		 												<button class="btn btn-link btn-sm">Edit</button>
+		 										</a>
+		 									</div>
+		  									<div class="col">
+		  										<form:form action="../deleteAccomplishment/${accomplishment.id }" method="POST">
+													<button type="submit" class="btn btn-link btn-sm">Remove</button>
+												</form:form>
+											</div>
+											<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
+		 								</div>
+									</c:if>
 								</security:authorize> 								
  							</td>
  						</tr>
