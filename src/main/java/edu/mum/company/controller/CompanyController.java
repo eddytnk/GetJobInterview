@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.validation.Valid;
 
 import edu.mum.company.entity.Company;
+import edu.mum.company.service.CategoryService;
 import edu.mum.company.service.CompanyService;
 
 @Controller
@@ -19,7 +20,9 @@ public class CompanyController {
 
 	@Autowired
 	CompanyService companyService;
-
+	
+	@Autowired
+	CategoryService categoryService;
 
 	@RequestMapping(value = "/companies", method = RequestMethod.GET)
 	public String getAllCompanies(Model model) {
@@ -35,36 +38,36 @@ public class CompanyController {
 
 	@RequestMapping("/addCompany")
 	public String addCompany(Model model, @ModelAttribute("company") Company company) {
+//		model.addAttribute("categories", categoryService.getAllCategories());
 		return "company/addCompany";
 	}
-	
+
 	@RequestMapping(value = "/addCompany", method = RequestMethod.POST)
 	public String saveCompany(Model model, @ModelAttribute("company") @Valid Company company, BindingResult result) {
 		String view = "redirect:/companies";
-		if(!result.hasErrors()) {
+		if (!result.hasErrors()) {
 			companyService.saveCompany(company);
-		}else
-		{
-			view= "company/addCompany";
+		} else {
+			view = "company/addCompany";
 		}
 		return view;
 	}
+
 	@RequestMapping(value = "/companies/{id}", method = RequestMethod.POST)
 	public String updateCompany(Model model, @ModelAttribute("company") @Valid Company company, BindingResult result) {
 		String view = "redirect:/companies";
-		if(!result.hasErrors()) {
+		if (!result.hasErrors()) {
 			companyService.saveCompany(company);
-		}else
-		{
-			view= "company/companyDetail";
+		} else {
+			view = "company/companyDetail";
 		}
 		return view;
 	}
-	
-    @RequestMapping(value = "/deleteCompany/{id}", method = RequestMethod.GET)
-    public String delete(@PathVariable Long id) {
-    	companyService.deleteCompany(companyService.findById(id));
-        return "redirect:/companies";
-    }
-	
+
+	@RequestMapping(value = "/deleteCompany/{id}", method = RequestMethod.GET)
+	public String delete(@PathVariable Long id) {
+		companyService.deleteCompany(companyService.findById(id));
+		return "redirect:/companies";
+	}
+
 }
