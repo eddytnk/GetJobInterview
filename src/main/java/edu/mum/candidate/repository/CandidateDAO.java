@@ -36,6 +36,15 @@ public class CandidateDAO {
 		
 	}
 	
+	public Candidate findUserId(Long ownerID){	
+		TypedQuery<Candidate> query = em.createQuery(" select c from Candidate c where c.owner.id =:ownerID ", Candidate.class); 
+
+		query.setParameter("ownerID", ownerID);
+		//query.setParameter("com", company.getId());
+		return query.getSingleResult();
+		
+		
+	}
 	
 
 }

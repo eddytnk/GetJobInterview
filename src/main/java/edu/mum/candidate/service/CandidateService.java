@@ -14,6 +14,7 @@ import edu.mum.candidate.entity.Skill;
 import edu.mum.candidate.repository.CandidateDAO;
 import edu.mum.candidate.repository.CandidateRepository;
 import edu.mum.candidate.repository.ExperienceRepository;
+import edu.mum.login.entity.User;
 
 @Service
 public class CandidateService {
@@ -104,6 +105,11 @@ public class CandidateService {
 		toUpdate.setPictureLocalURL(pictureLocalURL);
 		candidateRepository.save(toUpdate);
 		
+	}
+
+	public Candidate getCandidateByOwner(User user) {
+		// TODO Auto-generated method stub
+		return candidateDAO.findUserId(user.getId());
 	}
 
 	
