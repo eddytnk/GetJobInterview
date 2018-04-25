@@ -6,9 +6,19 @@
 			<div style="text-align: right;">
 			</div>
 			<div style="text-align: center;">
-				<img class="img-thumbnail" src="./resources/images/avater.png"
+			    <c:choose>
+			         <c:when test = "${candidate.pictureLocalURL !=''}">
+			           <img class="img-thumbnail" src="${pictureLocalURL }"
 					style="width: 200px; height: 200px; border-radius: 100%; margin-top: -150px"
 					alt="Avater Image">
+			         </c:when>
+			         <c:otherwise>
+			          <img class="img-thumbnail" src="./resources/images/avater.png"
+					style="width: 200px; height: 200px; border-radius: 100%; margin-top: -150px"
+					alt="Avater Image">
+			         </c:otherwise>
+		         </c:choose>
+				
 			</div>
 			<div style="text-align: center; padding: 2%">
 				<h5 class="card-title">${candidate.name }</h5>
@@ -41,14 +51,18 @@
 								<b>${experience.companyName}</b>
 							</div>
 							<div>
-								${experience.periodFrom} - ${experience.periodFrom}
+								${mapMonths[experience.fromMonth]} ${experience.fromYear} 
+								- 
+								${mapMonths[experience.toMonth]} ${experience.toYear}
 							</div>
 							<div>
-								${experience.street} 
-								${experience.city} 
-								${experience.state}, 
-								${experience.state}.
-								(ZIP: ${experience.zip})
+								<i>
+									${experience.companyAddress.street} 
+									${experience.companyAddress.city} 
+									${experience.companyAddress.state}, 
+									${experience.companyAddress.state}.
+									(ZIP: ${experience.companyAddress.zip})
+								</i>
 							</div>
 							<p class="card-text">
 								${experience.description}
@@ -71,7 +85,7 @@
 						<c:forEach items="${candidate.educations}" var="education">
 						<div class="row">
 							<div class="col-md-1">
-								<i class="fa fa-institution" style="font-size: 50px"></i>
+								<i class="fas fa-graduation-cap " style="font-size: 50px"></i>
 							</div>
 							<div class="col-md-11">
 
@@ -102,15 +116,22 @@
 				</div>
 				<div class="card-body">
 					<c:forEach items="${candidate.skills}" var="skill">
-						<button class="btn btn-secondary">
-							<i class="fa fa-plus" style="font-size: 50px"></i>
-							
-						    ${skill.skillName}
-						</button>
+						<div class="row">
+							<div class="col-md-1">
+								<i class="fas fa-lightbulb  " style="font-size: 30px;color:gold"></i>
+							</div>
+							<div class="col-md-11">
+								  <b>${skill.title}</b>
+							    <hr/>
+							    ${skill.description}
+							</div>
+						</div>
+						<hr/>
 					</c:forEach>
-
 				</div>
+				
 			</div>
+			
 			<br />
 			
 			<div class="card">
@@ -119,11 +140,17 @@
 				</div>
 				<div class="card-body">
 					<c:forEach items="${candidate.interests}" var="interest">
-						<button class="btn btn-secondary">
-							<i class="fa fa-plus" style="font-size: 50px"></i>
-							
-						    ${interest.interestName}
-						</button>
+					    <div class="row">
+							<div class="col-md-1">
+								<i class="fas fa-heart   " style="font-size: 30px;color:red"></i>
+							</div>
+							<div class="col-md-11">
+								  <b>${interest.title}</b>
+							    <hr/>
+							    ${interest.description}
+							</div>
+						</div>
+						<hr/>
 					</c:forEach>
 
 				</div>
@@ -139,13 +166,15 @@
 					<c:forEach items="${candidate.accomplishments}" var="accomplishment">
 							<div class="row">
 								<div class="col-md-1">
-									<i class="fa fa-lightbulb-o" style="font-size: 50px"></i>
+									<i class="fas fa-thumbtack " style="font-size: 50px"></i>  
 								</div>
 								<div class="col-md-11">
-									<div> ${accomplishments.accomplishmentDescription}</div>
+									<b>${accomplishment.title}</b>
 									<hr />
+									<div> ${accomplishment.description}</div>
 								</div>
 							</div>
+							<hr />
 					</c:forEach>
 
 				</div>
