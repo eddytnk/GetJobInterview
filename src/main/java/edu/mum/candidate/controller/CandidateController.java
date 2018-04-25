@@ -79,7 +79,7 @@ public class CandidateController {
 	}
 	@RequestMapping(value = "/myProfile")
 	public String get( Model model, Principal principal) { 
-		String view = "candidate/candidateDetail";		
+		String view = "candidate/resume";		
 		if(principal != null ) {
 			System.out.println("principal.getName(): "+principal.getName());
 				//User user = userService.findByUsername(principal.getName());
