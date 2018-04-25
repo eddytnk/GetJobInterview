@@ -79,7 +79,19 @@
 	 							<div>${experience.companyAddress.city}, ${experience.companyAddress.state}</div>
 	 							<br>
 	 							<div>Summary: ${experience.description}</div>
-	 							<div><a href="../editExperience/${experience.id }">Edit</a></div>
+	 							<div class="row">
+ 									<div class="col">
+ 										<a href="../editExperience/${experience.id }">
+ 												<button class="btn btn-link btn-sm">Edit</button>
+ 										</a>
+ 									</div>
+  									<div class="col">
+  										<form:form action="../deleteExperience/${experience.id }" method="POST">
+											<button type="submit" class="btn btn-link btn-sm">Remove</button>
+										</form:form>
+									</div>
+									<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
+ 								</div>
 	 						</td>
 	 					</tr>
 	 					<!-- <tr>
@@ -105,7 +117,19 @@
  								<div>${education.yearFrom } - ${education.yearTo }</div>
  								<br>
 	 							<div>Description: ${education.description}</div>
-	 							<div><a href="../editEducation/${education.id }">Edit</a></div>
+	 							<div class="row">
+ 									<div class="col">
+ 										<a href="../editEducation/${education.id }">
+ 												<button class="btn btn-link btn-sm">Edit</button>
+ 										</a>
+ 									</div>
+  									<div class="col">
+  										<form:form action="../deleteEducation/${education.id }" method="POST">
+											<button type="submit" class="btn btn-link btn-sm">Remove</button>
+										</form:form>
+									</div>
+									<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
+ 								</div>
  							</td>
  						</tr>
  					
@@ -127,7 +151,19 @@
  							<td>
  								<div>${skill.title }</div>
  								<div>Description: ${skill.description }</div>
- 								<div><a href="../editSkill/${skill.id }">Edit</a></div>
+ 								<div class="row">
+ 									<div class="col">
+ 										<a href="../editSkill/${skill.id }">
+ 												<button class="btn btn-link btn-sm">Edit</button>
+ 										</a>
+ 									</div>
+  									<div class="col">
+  										<form:form action="../deleteSkill/${skill.id }" method="POST">
+											<button type="submit" class="btn btn-link btn-sm">Remove</button>
+										</form:form>
+									</div>
+									<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
+ 								</div>
  							</td>
  						</tr>
  					</c:forEach>
@@ -148,7 +184,19 @@
  							<td>
  								<div>${interest.title }</div>
  								<div>Description: ${interest.description }</div>
- 								<div><a href="../editInterest/${interest.id }">Edit</a></div>
+ 								<div class="row">
+ 									<div class="col">
+ 										<a href="../editInterest/${interest.id }">
+ 												<button class="btn btn-link btn-sm">Edit</button>
+ 										</a>
+ 									</div>
+  									<div class="col">
+  										<form:form action="../deleteInterest/${interest.id }" method="POST">
+											<button type="submit" class="btn btn-link btn-sm">Remove</button>
+										</form:form>
+									</div>
+									<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
+ 								</div>
  							</td>
  						</tr>
  					</c:forEach>
@@ -169,7 +217,19 @@
  							<td>
  								<div>${accomplishment.title }</div>
  								<div>Description: ${accomplishment.description }</div>
- 								<div><a href="../editAccomplishment/${accomplishment.id }">Edit</a></div>
+ 								<div class="row">
+ 									<div class="col">
+ 										<a href="../editAccomplishment/${accomplishment.id }">
+ 												<button class="btn btn-link btn-sm">Edit</button>
+ 										</a>
+ 									</div>
+  									<div class="col">
+  										<form:form action="../deleteAccomplishment/${accomplishment.id }" method="POST">
+											<button type="submit" class="btn btn-link btn-sm">Remove</button>
+										</form:form>
+									</div>
+									<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
+ 								</div>
  							</td>
  						</tr>
  					</c:forEach>

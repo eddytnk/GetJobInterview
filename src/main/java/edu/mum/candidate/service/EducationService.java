@@ -29,6 +29,11 @@ public class EducationService {
 		educationRepository.save(toUpdate);
 		
 		//repository.
+	}
+
+	public void delete(String id) {
+		educationRepository.delete(getEducationById(id));
+		
 	}	
 
 }

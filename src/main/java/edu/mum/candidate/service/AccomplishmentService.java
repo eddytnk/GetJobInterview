@@ -22,6 +22,10 @@ public class AccomplishmentService {
 		toUpdate.setTitle(accomplishment.getTitle());
 		toUpdate.setDescription(accomplishment.getDescription());		
 		accomplishmentRepository.save(toUpdate);
+	}
+
+	public void delete(String id) {
+		accomplishmentRepository.delete(getAccomplishmentById(id));		
 	}	
 
 }

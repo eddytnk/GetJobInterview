@@ -61,5 +61,12 @@ public class ExperienceController {
 		experienceService.updateExperience(id, experience);//.addCandidate(candidate);
 		return view; //"redirect:../candidates";
 	}
+	
+	@RequestMapping(value="/deleteExperience/{id}", method=RequestMethod.POST)
+	public String delete(@PathVariable String id) {
+		String view = "redirect:../candidates/"+experienceService.getExperienceById(id).getOwner().getId(); 
+		experienceService.delete(id);
+		return view;
+	}
 
 }

@@ -61,5 +61,12 @@ public class EducationController {
 		educationService.updateEducation(id, education);//.addCandidate(candidate);
 		return view; //"redirect:../candidates";
 	}
+	
+	@RequestMapping(value="/deleteEducation/{id}", method=RequestMethod.POST)
+	public String delete(@PathVariable String id) {
+		String view = "redirect:../candidates/"+educationService.getEducationById(id).getOwner().getId(); 
+		educationService.delete(id);
+		return view;
+	}
 
 }

@@ -54,5 +54,12 @@ public class InterestController {
 		interestService.updateInterest(id, interest);
 		return view; //"redirect:../candidates";
 	}
+	
+	@RequestMapping(value="/deleteInterest/{id}", method=RequestMethod.POST)
+	public String delete(@PathVariable String id) {
+		String view = "redirect:../candidates/"+interestService.getInterestById(id).getOwner().getId(); 
+		interestService.delete(id);
+		return view;
+	}
 
 }

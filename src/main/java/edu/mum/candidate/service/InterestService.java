@@ -22,6 +22,11 @@ public class InterestService {
 		toUpdate.setTitle(interest.getTitle());
 		toUpdate.setDescription(interest.getDescription());		
 		interestRepository.save(toUpdate);
+	}
+
+	public void delete(String id) {
+		interestRepository.delete(getInterestById(id));
+		
 	}	
 
 }

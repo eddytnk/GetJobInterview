@@ -54,5 +54,12 @@ public class AccomplishmentController {
 		accomplishmentService.updateAccomplishment(id, accomplishment);
 		return view; //"redirect:../candidates";
 	}
+	
+	@RequestMapping(value="/deleteAccomplishment/{id}", method=RequestMethod.POST)
+	public String delete(@PathVariable String id) {
+		String view = "redirect:../candidates/"+accomplishmentService.getAccomplishmentById(id).getOwner().getId(); 
+		accomplishmentService.delete(id);
+		return view;
+	}
 
 }

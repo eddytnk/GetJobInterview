@@ -22,6 +22,11 @@ public class SkillService {
 		toUpdate.setTitle(skill.getTitle());
 		toUpdate.setDescription(skill.getDescription());		
 		skillRepository.save(toUpdate);
+	}
+
+	public void delete(String id) {
+		skillRepository.delete(getSkillById(id));
+		
 	}	
 
 }

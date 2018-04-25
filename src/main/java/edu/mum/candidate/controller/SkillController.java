@@ -54,5 +54,12 @@ public class SkillController {
 		skillService.updateSkill(id, skill);
 		return view; //"redirect:../candidates";
 	}
+	
+	@RequestMapping(value="/deleteSkill/{id}", method=RequestMethod.POST)
+	public String delete(@PathVariable String id) {
+		String view = "redirect:../candidates/"+skillService.getSkillById(id).getOwner().getId(); 
+		skillService.delete(id);
+		return view;
+	}
 
 }

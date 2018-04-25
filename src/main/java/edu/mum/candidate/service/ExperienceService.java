@@ -34,6 +34,11 @@ public class ExperienceService {
 		experienceRepository.save(toUpdate);
 		
 		//repository.
+	}
+
+	public void delete(String id) {
+		experienceRepository.delete(getExperienceById(id));
+		
 	}	
 
 }
