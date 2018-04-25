@@ -1,0 +1,313 @@
+
+<div class="card" style="width: 100%">
+		<img class="card-img-top" src="../../resources/images/cover.jpg"
+			alt="Cover Image">
+		<div class="card-body">
+			<div style="text-align: right;">
+			</div>
+			<div style="text-align: center;">
+			    <c:choose>
+			         <c:when test = "${candidate.pictureLocalURL != ''}">
+			           <img class="img-thumbnail" src="${candidate.pictureLocalURL }" 
+					style="width: 200px; height: 200px; border-radius: 100%; margin-top: -150px"
+					alt="Avater Image">
+			         </c:when>
+			         <c:otherwise>
+			          <img class="img-thumbnail" src="../../resources/images/avater.png"
+					style="width: 200px; height: 200px; border-radius: 100%; margin-top: -150px"
+					alt="Avater Image">
+			         </c:otherwise>
+		         </c:choose>
+		         <security:authorize access="hasRole('ROLE_CANDIDATE')">
+				<c:if test="${candidate.id == userCandidate.id}">
+					<div><a href="../editProfilePict/${candidate.id}">Change Profile Picture</a> </div>
+				</c:if>
+			</security:authorize>
+				
+			</div>
+			
+			<div style="text-align: center; padding: 2%">
+				<h5 class="card-title">${candidate.name }</h5>
+				<p class="card-text">${candidate.title }</p>
+				<p class="card-text">${candidate.address.country}, ${candidate.address.state}, ${candidate.address.city}</p>
+				<p class="card-text">${candidate.address.street}, ${candidate.address.zip}</p>
+				<security:authorize access="hasRole('ROLE_CANDIDATE')">
+ 				<c:if test="${candidate.id == userCandidate.id}">
+ 					<p class="card-text"><a href="../editAddress/${candidate.id}">Edit Address</a></p>
+ 					
+				</c:if>
+				</security:authorize>
+			</div>
+			<hr />
+			<div>
+				 ${candidate.summary }
+				 <security:authorize access="hasRole('ROLE_CANDIDATE')">
+ 					<c:if test="${candidate.id == userCandidate.id}">
+ 						<div> <a href="../editBasicInfo/${candidate.id}">Edit Basic Info</a> </div>
+					</c:if>
+				</security:authorize>
+			</div>
+			
+		</div>
+	</div>
+	
+	
+	<br />
+	
+			<div class="card" id="experience">
+				<div class="card-header">
+					<spring:message code="label.experience" text="experience" />
+					<security:authorize access="hasRole('ROLE_CANDIDATE')">
+ 				<c:if test="${candidate.id == userCandidate.id}"> 					
+ 					<a href="../addExperience/${candidate.id}">Add Work Experience</a>
+				</c:if>
+			</security:authorize> 
+				</div>
+				<div class="card-body">
+				<c:forEach items="${candidate.experiences}" var="experience">
+					<div class="row">
+						<div class="col-md-1">
+							<i class="fa fa-database" style="font-size: 50px"></i>
+						</div>
+						<div class="col-md-11">
+
+							<h5 class="card-title">${experience.position}</h5>
+							<div>
+								<b>${experience.companyName}</b>
+							</div>
+							<div>
+								${mapMonths[experience.fromMonth]} ${experience.fromYear} 
+								- 
+								${mapMonths[experience.toMonth]} ${experience.toYear}
+							</div>
+							<div>
+								<i>
+									${experience.companyAddress.street} 
+									${experience.companyAddress.city} 
+									${experience.companyAddress.state}, 
+									${experience.companyAddress.state}.
+									(ZIP: ${experience.companyAddress.zip})
+								</i>
+							</div>
+							<p class="card-text">
+								${experience.description}
+							</p>
+						
+							<hr />
+
+						</div>
+						<security:authorize access="hasRole('ROLE_CANDIDATE')">
+	 								<c:if test="${candidate.id == userCandidate.id}">
+		 								<div class="row">
+		 									<div class="col">
+		 										<a href="../editExperience/${experience.id }">
+		 												<button class="btn btn-link btn-sm">Edit</button>
+		 										</a>
+		 									</div>
+		  									<div class="col">
+		  										<form:form action="../deleteExperience/${experience.id }" method="POST">
+													<button type="submit" class="btn btn-link btn-sm">Remove</button>
+												</form:form>
+											</div>
+											<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
+		 								</div> 			
+									</c:if>					
+								</security:authorize>	
+					</div>
+				</c:forEach>
+				</div>
+			</div>
+
+			<br />
+			<div class="card">
+				<div class="card-header" id="education">
+					<spring:message code="label.education" text="education" />
+					<security:authorize access="hasRole('ROLE_CANDIDATE')">
+ 				<c:if test="${candidate.id == userCandidate.id}">
+ 					<a href="../addEducation/${candidate.id}">Add Education</a>
+				</c:if>
+			</security:authorize> 	
+				</div>
+				<div class="card-body">
+						<c:forEach items="${candidate.educations}" var="education">
+						<div class="row">
+							<div class="col-md-1">
+								<i class="fas fa-graduation-cap " style="font-size: 50px"></i>
+							</div>
+							<div class="col-md-11">
+
+								<h5 class="card-title">${education.schoolName}</h5>
+								<div>
+									<b>${education.degree} 
+									<spring:message code="label.of" text="of" /> 
+									${education.fieldStudy}
+									</b>
+								</div>
+								<div> ${education.yearFrom} -  ${education.yearTo}</div>
+							
+								<p class="card-text">
+									 ${education.description}
+								</p>
+								<hr />
+
+							</div>
+							<security:authorize access="hasRole('ROLE_CANDIDATE')">
+	 								<c:if test="${candidate.id == userCandidate.id}">
+		 								<div class="row">
+		 									<div class="col">
+		 										<a href="../editEducation/${education.id }">
+		 												<button class="btn btn-link btn-sm">Edit</button>
+		 										</a>
+		 									</div>
+		  									<div class="col">
+		  										<form:form action="../deleteEducation/${education.id }" method="POST">
+													<button type="submit" class="btn btn-link btn-sm">Remove</button>
+												</form:form>
+											</div>
+											<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
+		 								</div> 	
+									</c:if>							
+								</security:authorize>	
+						</div>
+						</c:forEach>
+				</div>
+			</div>
+
+			<br />
+			<div class="card">
+				<div class="card-header" id="futured_skills">
+					<spring:message code="label.futured_skills" text="futured_skills" />
+					<security:authorize access="hasRole('ROLE_CANDIDATE')">
+ 				<c:if test="${candidate.id == userCandidate.id}">
+ 					<a href="../addSkill/${candidate.id}">Add Skill</a>
+				</c:if>
+			</security:authorize> 
+				</div>
+				<div class="card-body">
+					<c:forEach items="${candidate.skills}" var="skill">
+						<div class="row">
+							<div class="col-md-1">
+								<i class="fas fa-lightbulb  " style="font-size: 30px;color:gold"></i>
+							</div>
+							<div class="col-md-11">
+								  <b>${skill.title}</b>
+							    <hr/>
+							    ${skill.description}
+							</div>
+							<security:authorize access="hasRole('ROLE_CANDIDATE')">
+ 									<c:if test="${candidate.id == userCandidate.id}">
+	 									<div class="row">
+		 									<div class="col">
+		 										<a href="../editSkill/${skill.id }">
+		 												<button class="btn btn-link btn-sm">Edit</button>
+		 										</a>
+		 									</div>
+		  									<div class="col">
+		  										<form:form action="../deleteSkill/${skill.id }" method="POST">
+													<button type="submit" class="btn btn-link btn-sm">Remove</button>
+												</form:form>
+											</div>
+											<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
+		 								</div>
+									</c:if>
+								</security:authorize>
+						</div>
+						<hr/>
+					</c:forEach>
+				</div>
+				
+			</div>
+			
+			<br />
+			
+			<div class="card">
+				<div class="card-header" id="interests">
+					<spring:message code="label.interest" text="interest" />
+					<security:authorize access="hasRole('ROLE_CANDIDATE')">
+ 				<c:if test="${candidate.id == userCandidate.id}"> 			
+ 					<a href="../addInterest/${candidate.id}">Add Interest</a>
+				</c:if>
+			</security:authorize>
+				</div>
+				<div class="card-body">
+					<c:forEach items="${candidate.interests}" var="interest">
+					    <div class="row">
+							<div class="col-md-1">
+								<i class="fas fa-heart   " style="font-size: 30px;color:red"></i>
+							</div>
+							<div class="col-md-11">
+								  <b>${interest.title}</b>
+							    <hr/>
+							    ${interest.description}
+							</div>
+							<security:authorize access="hasRole('ROLE_CANDIDATE')">
+ 									<c:if test="${candidate.id == userCandidate.id}">
+	 									<div class="row">
+		 									<div class="col">
+		 										<a href="../editInterest/${interest.id }">
+		 												<button class="btn btn-link btn-sm">Edit</button>
+		 										</a>
+		 									</div>
+		  									<div class="col">
+		  										<form:form action="../deleteInterest/${interest.id }" method="POST">
+													<button type="submit" class="btn btn-link btn-sm">Remove</button>
+												</form:form>
+											</div>
+											<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
+		 								</div>
+									</c:if>
+								</security:authorize>
+						</div>
+						<hr/>
+					</c:forEach>
+
+				</div>
+			</div>
+			<br />
+			
+			<div class="card">
+				<div class="card-header" id="accomplishments">
+					<spring:message code="label.accomplishments" text="accomplishments" />
+					<security:authorize access="hasRole('ROLE_CANDIDATE')">
+ 				<c:if test="${candidate.id == userCandidate.id}">
+ 					<a href="../addAccomplishment/${candidate.id}">Add Accomplishment</a>
+				</c:if>
+			</security:authorize> 
+				</div>
+				<div class="card-body">
+				
+					<c:forEach items="${candidate.accomplishments}" var="accomplishment">
+							<div class="row">
+								<div class="col-md-1">
+									<i class="fas fa-thumbtack " style="font-size: 50px"></i>  
+								</div>
+								<div class="col-md-11">
+									<b>${accomplishment.title}</b>
+									<hr />
+									<div> ${accomplishment.description}</div>
+								</div>
+								<security:authorize access="hasRole('ROLE_CANDIDATE')">
+ 									<c:if test="${candidate.id == userCandidate.id}">
+	 									<div class="row">
+		 									<div class="col">
+		 										<a href="../editAccomplishment/${accomplishment.id }">
+		 												<button class="btn btn-link btn-sm">Edit</button>
+		 										</a>
+		 									</div>
+		  									<div class="col">
+		  										<form:form action="../deleteAccomplishment/${accomplishment.id }" method="POST">
+													<button type="submit" class="btn btn-link btn-sm">Remove</button>
+												</form:form>
+											</div>
+											<div class="col"></div>  <div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div><div class="col"></div> <div class="col"></div> <div class="col"></div> <div class="col"></div> 									
+		 								</div>
+									</c:if>
+								</security:authorize> 
+							</div>
+							<hr />
+					</c:forEach>
+
+				</div>
+			</div>
+			<br />
+			

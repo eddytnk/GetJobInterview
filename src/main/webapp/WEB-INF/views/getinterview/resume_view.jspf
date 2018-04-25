@@ -22,7 +22,7 @@
 			</div>
 			<div style="text-align: center; padding: 2%">
 				<h5 class="card-title">${candidate.name }</h5>
-				<p class="card-text">Software Engineer @MUM</p>
+				<p class="card-text">${candidate.title }</p>
 			</div>
 			<hr />
 			<div>
