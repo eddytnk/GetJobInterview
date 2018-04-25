@@ -1,6 +1,7 @@
 package edu.mum.company.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,10 +19,6 @@ public class CategoryService {
 		return (List<Category>) categoryRepository.findAll();
 	}
 	
-	public List<Category> getCategoryByName(String name){
-		return categoryRepository.findByName(name);
-	}
-	
 	public void Delete(Category cat) {
 		categoryRepository.delete(cat);
 	}
@@ -29,5 +26,16 @@ public class CategoryService {
 	public void Save(Category cat) {
 		categoryRepository.save(cat);
 	}
-
+	
+	public Long getCategoryIdByName(String name) {
+		Category cat;
+		cat= categoryRepository.findOneByName(name);
+		return cat.getId();
+	}
+	
+	public Optional<Category> getCategoryById(Long id) {
+		Optional<Category> cat= categoryRepository.findById(id);
+		return cat;
+		
+	}
 }

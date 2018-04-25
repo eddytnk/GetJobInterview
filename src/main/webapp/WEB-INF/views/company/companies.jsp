@@ -2,7 +2,21 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <div class="container">
 	<h1>List of company</h1>
-	<table border=1>
+<table class="table table-hover">
+	    <thead>
+	      <tr>
+	        <th>Name</th>        
+	        <th>Email Address</th>
+	        <th>Website</th>
+	        <th>Street</th>
+	        <th>City</th>	        
+	        <th>State</th>
+	        <th>Country</th>
+	        <th>Zip Code</th>
+	        <th>Actions</th>
+	      </tr>
+	    </thead>
+	    <tbody>
 		<c:forEach var="company" items="${companies}">
 			<tr>
 				<td>${company.name}</td>
@@ -19,8 +33,8 @@
 					</c:if></td>
 			</tr>
 		</c:forEach>
-	</table>
-
+	    </tbody>
+  </table>
 	<a href="addCompany"> Add a company</a>
 </div>
 <%@ include file="../footer.jspf"%>

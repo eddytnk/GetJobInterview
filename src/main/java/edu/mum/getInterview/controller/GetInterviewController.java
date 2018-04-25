@@ -1,5 +1,6 @@
 package edu.mum.getInterview.controller;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,9 +8,12 @@ import java.util.Map;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -68,7 +72,7 @@ public String saveInterviewPage(Model model,
 					CandidateCompany candCom = new CandidateCompany();
 					candCom.setCandidate(candidate);
 					candCom.setCompany(com);
-					String resumeLink = Helper.hashMd5(""+com.getId()+candidate.getId()); // a hash of companyID and CandidateID
+					String resumeLink = Helper.hashMd5(""+com.getId()+candidate.getId()+LocalDateTime.now()); // a hash of companyID and CandidateID
 					candCom.setResumeLink(resumeLink);
 					candCom.setVisited(false); 
 					candCom.setCreatedAt(new Date());
@@ -88,10 +92,11 @@ public String saveInterviewPage(Model model,
 					 sendMailDTo.setSubject("GetJobIntervice - "+candidate.getName());
 						String body = candidate.getSummary();
 						sendMailDTo.addEmails(new EmailAdress(co.getName(), co.getEmailAddress()));
-					 sendMailDTo.setMessage(body);
-					 body += "Click here to see Complete Resume of "+ candidate.getName();
-					 body += "<a href='"+host+"/resume/"+c.getResumeLink()+"'>"+c.getResumeLink()+"</a>";
+					
+					 body += "<br/>Click here to see Complete Resume of "+ candidate.getName();
+					 body += "<a href='"+host+"/resume/link/"+c.getResumeLink()+"'>"+c.getResumeLink()+"</a>";
 					 
+					 sendMailDTo.setMessage(body);
 					 
 				    RestTemplate restTemplate = new RestTemplate();
 				    ResponseMessage result = restTemplate.postForObject(uri,sendMailDTo, ResponseMessage.class);
@@ -120,12 +125,36 @@ public String getResume(Model model) {
 }
 
 
-@RequestMapping(value = { "/resume/{code}" }, method = RequestMethod.GET)
-public String viewResume(Model model) {
-	Candidate candidate = candService.findByName("Edward T. Tanko").get(0); //From session		
+@RequestMapping(value = { "/resume/link/{code}" }, method = RequestMethod.GET)
+public String viewResume(Model model, @PathVariable("code") String code) {
+	CandidateCompany candCom = canComService.findCondidateCompanyByResumeLink(code);
+	Candidate candidate = candCom.getCandidate();	
+	
+	
+	canComService.saveCandidateCompany(candCom);
+	
+	SendMailDTO sendMailDTo = new SendMailDTO();
+	sendMailDTo.setSubject("GetJobIntervice - "+candCom.getCompany().getName());
+		
+	sendMailDTo.addEmails(new EmailAdress(candidate.getName(), candidate.getEmailAddress()));
+	String body = candCom.getCompany().getName()+" has opened your Resume!";
+	 sendMailDTo.setMessage(body);
+	 
+	if(!candCom.isVisited()) { 
+	   final String uri = "http://localhost:8081/sendmails/";
+	   RestTemplate restTemplate = new RestTemplate();
+	   ResponseMessage result = restTemplate.postForObject(uri,sendMailDTo, ResponseMessage.class);
+	   candCom.setVisited(true);
+	   /*if(result.getStatus().equals("200")){
+		   candCom.setVisited(true);
+	   }*/
+	   
+	   canComService.saveCandidateCompany(candCom);
+	}
+	
 	model.addAttribute("candidate", candidate);
 	model.addAttribute("mapMonths", Helper.mapMonths());
-	return "getinterview/resume";
+	return "getinterview/candidate_resume";
 }
 
 

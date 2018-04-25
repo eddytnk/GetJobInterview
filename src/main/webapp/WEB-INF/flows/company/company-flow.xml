@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+							http://www.springframework.org/schema/webflow/spring-webflow.xsd" start-state="simpleFlow">
+	
+	<var name="company" class="edu.mum.company.entity.Company" />
+	
+	<view-state id="simpleFlow" view="company/addCompany" model="company">
+		<transition on="add" to="end" >
+			<evaluate expression="flowHelper.saveCompany(company)" />
+		</transition>
+		<transition on="cancel" to="end" />
+	</view-state>
+	
+	<view-state id="end" view="company/companies" />
+
+</flow>

@@ -29,6 +29,9 @@ public class CandidateCompanyService {
 	public List<CandidateCompany> findByCandidate(Company company) {
 		return candCompDAO.findByCompany(company);
 	}
+	public CandidateCompany findCondidateCompanyByResumeLink(String link) {
+		return candCompDAO.findCondidateCompanyByResumeLink(link);
+	}
 
 	public void saveCandidateCompany(CandidateCompany candCompany) {
 		candCompRepository.save(candCompany);

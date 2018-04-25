@@ -44,6 +44,15 @@ public class CandidateCompanyDAO {
 		query.setParameter("com", company.getId());
 		return query.getSingleResult();
 	}
+	
+	public CandidateCompany findCondidateCompanyByResumeLink(String link) {
+		TypedQuery<CandidateCompany> query = 
+				em.createQuery("select cc from CandidateCompany cc WHERE cc.resumeLink =:link",
+						CandidateCompany.class);
+
+		query.setParameter("link", link);
+		return query.getSingleResult();
+	}
 
 	public List<CandidateCompany> findByCompany(Company company) {
 

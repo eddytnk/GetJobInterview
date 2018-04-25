@@ -4,53 +4,70 @@
 	<h1>Company Details</h1>
 	<form:form modelAttribute="company"
 		action="../companies/${company.getId()}" method="post">
-		<table>
-			<tr>
-				<td>Name:</td>
-				<td><input type="text" name="name" value="${company.name}" />
-				</td>
-			</tr>
-			<tr>
-				<td>Email Address:</td>
-				<td><input type="text" name="emailAddress"
-					value="${company.emailAddress}" /></td>
-			</tr>
-			<tr>
-				<td>Website:</td>
-				<td><input type="text" name="website"
-					value="${company.website}" /></td>
-			</tr>
-			<tr>
-				<td>Street:</td>
-				<td><input type="text" name="address.street"
-					value="${company.address.street}" /></td>
-			</tr>
-			<tr>
-				<td>City:</td>
-				<td><input type="text" name="address.city"
-					value="${company.address.city}" /></td>
-			</tr>
-			<tr>
-				<td>State:</td>
-				<td><input type="text" name="address.state"
-					value="${company.address.state}" /></td>
-			</tr>
-			<tr>
-				<td>Country:</td>
-				<td><input type="text" name="address.country"
-					value="${company.address.country}" /></td>
-			</tr>
-			<tr>
-				<td>Zipcode:</td>
-				<td><input type="text" name="address.zipcode"
-					value="${company.address.zipcode}" /></td>
-			</tr>
-		</table>
-		<input type="submit" value="update" />
+		<div class="form-group">
+			<label for="name">Name:</label>
+			<form:input type="text" class="form-control" id="name" path="name"
+				placeholder="Enter Company name" />
+			<form:errors path="name" cssClass="error" />
+		</div>
+
+		<div class="form-group">
+			<label for="name">Email Address:</label>
+			<form:input type="text" class="form-control" path="emailAddress"
+				placeholder="Enter email address" />
+			<form:errors path="emailAddress" cssClass="error" />
+		</div>
+
+		<div class="form-group">
+			<label for="name">Web site:</label>
+			<form:input type="text" class="form-control" path="website"
+				placeholder="Enter webstie " />
+			<form:errors path="website" cssClass="error" />
+		</div>
+		<fieldset>
+			<legend>Address</legend>
+			<div class="form-group">
+
+				<label for="name">Street:</label>
+				<form:input type="text" class="form-control" path="address.street"
+					placeholder="Enter street" />
+				<form:errors path="address.street" cssClass="error" />
+			</div>
+
+			<div class="form-group">
+				<label for="name">City:</label>
+				<form:input type="text" class="form-control" path="address.city"
+					placeholder="Enter city" />
+				<form:errors path="address.city" cssClass="error" />
+			</div>
+
+			<div class="form-group">
+				<label for="name">State:</label>
+				<form:input type="text" class="form-control" path="address.state"
+					placeholder="Enter state" />
+				<form:errors path="address.state" cssClass="error" />
+			</div>
+
+			<div class="form-group">
+				<label for="name">Country:</label>
+				<form:input type="text" class="form-control" path="address.country"
+					placeholder="Enter country" />
+				<form:errors path="address.country" cssClass="error" />
+			</div>
+
+			<div class="form-group">
+				<label for="name">Zip code:</label>
+				<form:input type="text" class="form-control" path="address.zipcode"
+					placeholder="Enter zipcode" />
+				<form:errors path="address.zipcode" cssClass="error" />
+			</div>
+		</fieldset>
+		<input type="submit" value="update" id="update" name="_eventId_next" />
+		<button type="submit" id="cancel" name="_eventId_cancel">Cancel</button>
 	</form:form>
 	<form:form action="../deleteCompany/${company.getId()}" method="get">
 		<button type="submit">Delete</button>
-		<button id="cancel" name="_eventId_cancel">Cancel</button>
 	</form:form>
+
 </div>
 <%@ include file="../footer.jspf"%>

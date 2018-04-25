@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.Principal;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,6 +32,8 @@ import edu.mum.candidate.entity.Candidate;
 import edu.mum.candidate.entity.Experience;
 import edu.mum.candidate.service.CandidateService;
 import edu.mum.common.Helper;
+import edu.mum.login.entity.User;
+import edu.mum.login.service.UserService;
 
 
 
@@ -38,9 +41,10 @@ import edu.mum.common.Helper;
 //@RequestMapping(value="/candidate")
 public class CandidateController {
 	private CandidateService candidateService;
-	
 	@Autowired
-    ServletContext context;
+	private UserService userService;
+	@Autowired
+	private ServletContext context;
 	
 	@Autowired
 	public void setCandidateService(CandidateService candidateService) {
@@ -58,6 +62,22 @@ public class CandidateController {
 		model.addAttribute("candidate", candidateService.getCandidateById(id));
 		model.addAttribute("mapMonths", Helper.mapMonths());
 		return "candidate/candidateDetail";
+	}
+	
+	@RequestMapping(value = "/myProfile")
+	public String get( Model model, Principal principal) { 
+		String view = "candidate/candidateDetail";		
+		if(principal != null ) {
+			System.out.println("principal.getName(): "+principal.getName());
+				User user = userService.findByUsername(principal.getName());
+				model.addAttribute("candidate", candidateService.getCandidateByOwner(user));
+				model.addAttribute("mapMonths", Helper.mapMonths());
+			
+		}
+		else {
+			view = "candidate/accessDenied";
+		}		
+		return view;
 	}
 
 	
