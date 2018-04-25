@@ -27,6 +27,8 @@
 										name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 									<button class="btn btn-lg btn-primary btn-block" type="submit">Log
 										In</button>
+										<br/>
+										<span>${error}</span>
 								</div>
 							</fieldset>
 						</form>
