@@ -13,6 +13,7 @@ public class Skill {
 	private Candidate owner;
 	
 	private String title;
+	@Lob
 	private String description; // wanna use SkillCategory enitity? and then this entity will have Many to One to Candidate and that SkillCategory ? 
 	
 	public Long getId() {

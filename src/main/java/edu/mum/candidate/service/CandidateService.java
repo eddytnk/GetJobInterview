@@ -107,10 +107,10 @@ public class CandidateService {
 		
 	}
 
-	public Candidate getCandidateByOwner(User user) {
+	/*public Candidate getCandidateByOwner(User user) {
 		// TODO Auto-generated method stub
 		return candidateDAO.findUserId(user.getId());
-	}
+	}*/
 
 	
 

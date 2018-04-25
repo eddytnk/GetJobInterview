@@ -32,8 +32,10 @@ import edu.mum.candidate.entity.Candidate;
 import edu.mum.candidate.entity.Experience;
 import edu.mum.candidate.service.CandidateService;
 import edu.mum.common.Helper;
+import edu.mum.common.UserType;
 import edu.mum.login.entity.User;
 import edu.mum.login.service.UserService;
+import edu.mum.login.service.UserCandidateService;
 
 
 
@@ -43,6 +45,8 @@ public class CandidateController {
 	private CandidateService candidateService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private UserCandidateService userCandidateService;
 	@Autowired
 	private ServletContext context;
 	
@@ -70,7 +74,11 @@ public class CandidateController {
 		if(principal != null ) {
 			System.out.println("principal.getName(): "+principal.getName());
 				User user = userService.findByUsername(principal.getName());
-				model.addAttribute("candidate", candidateService.getCandidateByOwner(user));
+				System.out.println(user.getUserType());
+				if(user.getUserType() == UserType.CANDIDATE) {
+					System.out.println("user.getUserType() == UserType.CANDIDATE)");
+				}
+				model.addAttribute("candidate", userCandidateService.getCandidateByUser(user));
 				model.addAttribute("mapMonths", Helper.mapMonths());
 			
 		}

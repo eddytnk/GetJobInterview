@@ -4,6 +4,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import edu.mum.common.UserType;
+
 /**
  * @author: ChauKy
  * @Date: Apr 22, 2018
@@ -18,6 +20,16 @@ public class User {
 	private String password;
 	private String passwordConfirm;
 	private Set<Role> roles;
+	@Enumerated(EnumType.STRING)
+	private UserType userType;
+
+	public UserType getUserType() {
+		return userType;
+	}
+
+	public void setUserType(UserType userType) {
+		this.userType = userType;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

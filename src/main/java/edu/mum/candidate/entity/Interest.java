@@ -12,6 +12,7 @@ public class Interest {
 	private Candidate owner;
 	
 	private String title;
+	@Lob
 	private String description; // wanna use InterestCategory enitity? and then this entity will have Many to One to Candidate and that InterestCategory ? 
 	
 	public Long getId() {

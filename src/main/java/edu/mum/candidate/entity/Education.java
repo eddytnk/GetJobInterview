@@ -16,6 +16,7 @@ public class Education {
 	private String schoolName;
 	private String degree;
 	private String fieldStudy;
+	@Lob
 	private String description;
 	
 	private int yearFrom;

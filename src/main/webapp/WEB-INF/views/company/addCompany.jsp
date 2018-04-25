@@ -74,10 +74,10 @@
 			</div>
 		</fieldset>
 		<button type="submit" id="add" name="_eventId_add">Add</button>
-		<button type="button" id="cancel" name="_eventId_cancel">Cancel</button>
-		<input type="hidden" name="_flowExecutionKey"
-			value="${flowExecutionKey}" />
+		<!-- <button type="button" id="cancel" name="_eventId_cancel">Cancel</button>
+		<input type="hidden" name="_flowExecutionKey" -->
+		<button type="button" onclick="history.go(-1)">Cancel</button>
 	</form:form>
-
+	
 </div>
 <%@ include file="../footer.jspf"%>
